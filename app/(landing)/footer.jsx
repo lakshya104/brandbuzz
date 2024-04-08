@@ -3,12 +3,12 @@ import Image from "next/image";
 
 export const Footer = () => {
   return (
-    <footer className="hidden lg:block h-20 w-full border-t-2 border-slate-200 p-2">
-      <div className="max-w-screen-lg mx-auto flex items-center justify-evenly h-full">
+    <footer className="h-52 lg:h-20 w-full border-t-2 border-slate-200 p-5">
+      <div className="max-w-screen-lg mx-auto lg:flex-row flex-col flex items-center justify-evenly h-full">
         <Button size="lg" variant="ghost" className="w-full">
           <Image 
             src="/watch.svg" 
-            alt="Croatian" 
+            alt="watch" 
             height={32} 
             width={40}
             className="mr-4 rounded-md"
@@ -18,7 +18,7 @@ export const Footer = () => {
         <Button size="lg" variant="ghost" className="w-full">
           <Image 
             src="/quests.svg" 
-            alt="French" 
+            alt="quests" 
             height={32} 
             width={40}
             className="mr-4 rounded-md"
@@ -28,7 +28,7 @@ export const Footer = () => {
         <Button size="lg" variant="ghost" className="w-full">
           <Image 
             src="/win.svg" 
-            alt="Spanish" 
+            alt="win" 
             height={32} 
             width={40}
             className="mr-4 rounded-md"
@@ -38,7 +38,7 @@ export const Footer = () => {
         <Button size="lg" variant="ghost" className="w-full">
           <Image 
             src="/finish.svg" 
-            alt="Italian" 
+            alt="finish" 
             height={32} 
             width={40}
             className="mr-4 rounded-md"

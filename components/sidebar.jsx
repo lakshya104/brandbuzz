@@ -15,7 +15,7 @@ export const Sidebar = ({ className }) => {
         className
       )}
     >
-      <Link href="/">
+      <Link href="/" className="hidden lg:block">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/logo.svg" height={80} width={60} alt="logo" />
           <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
@@ -23,6 +23,12 @@ export const Sidebar = ({ className }) => {
           </h1>
         </div>
       </Link>
+      <div className="lg:hidden pt-8 pl-4 pb-7 flex items-center gap-x-3">
+        <Image src="/logo.svg" height={80} width={60} alt="logo" />
+        <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
+          Buzz
+        </h1>
+      </div>
       <div className="flex flex-col gap-y-2 flex-1">
         <SidebarItem label="Feed" href="/feed" iconSrc="/feed.svg" />
         <SidebarItem label="Quiz" href="/quiz" iconSrc="/quiz.svg" />
