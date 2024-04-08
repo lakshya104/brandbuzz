@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { Loader } from "lucide-react";
-// import { 
-//   ClerkLoaded, 
-//   ClerkLoading, 
-//   SignInButton, 
-//   SignUpButton, 
-//   SignedIn, 
-//   SignedOut
-// } from "@clerk/nextjs";
+import { 
+  ClerkLoaded, 
+  ClerkLoading, 
+  SignInButton, 
+  SignUpButton, 
+  SignedIn, 
+  SignedOut
+} from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import hero from '../../public/next.svg'
+import hero from '../../public/vercel.svg'
 
 export default function Home() {
   return (
@@ -20,41 +20,41 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center gap-y-8">
         <h1 className="text-xl lg:text-3xl font-bold text-neutral-600 max-w-[480px] text-center">
-          Earn, practice, and master with Buzz.
+          Watch, answer, and earn with Buzz.
         </h1>
         <div className="flex flex-col items-center gap-y-3 max-w-[330px] w-full">
-          {/* <ClerkLoading> */}
+          <ClerkLoading>
             <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
-          {/* </ClerkLoading> */}
-          {/* <ClerkLoaded>
+          </ClerkLoading>
+          <ClerkLoaded>
             <SignedOut>
               <SignUpButton
                 mode="modal"
-                afterSignInUrl="/learn"
-                afterSignUpUrl="/learn"
-              > */}
+                afterSignInUrl="/feed"
+                afterSignUpUrl="/feed"
+              >
                 <Button size="lg" variant="super" className="w-full">
                   Get Started
                 </Button>
-              {/* </SignUpButton>
+              </SignUpButton>
               <SignInButton
                 mode="modal"
-                afterSignInUrl="/learn"
-                afterSignUpUrl="/learn"
+                afterSignInUrl="/feed"
+                afterSignUpUrl="/feed"
               >
                 <Button size="lg" variant="primaryOutline" className="w-full">
                   I already have an account
                 </Button>
               </SignInButton>
             </SignedOut>
-            <SignedIn> */}
+            <SignedIn>
               <Button size="lg" variant="primary" className="w-full" asChild>
-                <Link href="/learn">
+                <Link href="/feed">
                   Continue Watching
                 </Link>
               </Button>
-            {/* </SignedIn>
-          </ClerkLoaded> */}
+            </SignedIn>
+          </ClerkLoaded>
         </div>
       </div>
     </div>
