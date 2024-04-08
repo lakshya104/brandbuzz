@@ -7,53 +7,43 @@ export const Footer = () => {
       <div className="max-w-screen-lg mx-auto flex items-center justify-evenly h-full">
         <Button size="lg" variant="ghost" className="w-full">
           <Image 
-            src="/hr.svg" 
+            src="/watch.svg" 
             alt="Croatian" 
             height={32} 
             width={40}
             className="mr-4 rounded-md"
           />
-          Croatian
+          Watch Content
         </Button>
         <Button size="lg" variant="ghost" className="w-full">
           <Image 
-            src="/es.svg" 
-            alt="Spanish" 
-            height={32} 
-            width={40}
-            className="mr-4 rounded-md"
-          />
-          Spanish
-        </Button>
-        <Button size="lg" variant="ghost" className="w-full">
-          <Image 
-            src="/fr.svg" 
+            src="/quests.svg" 
             alt="French" 
             height={32} 
             width={40}
             className="mr-4 rounded-md"
           />
-          French
+          Answer Questions
         </Button>
         <Button size="lg" variant="ghost" className="w-full">
           <Image 
-            src="/it.svg" 
+            src="/win.svg" 
+            alt="Spanish" 
+            height={32} 
+            width={40}
+            className="mr-4 rounded-md"
+          />
+          Earn Points
+        </Button>
+        <Button size="lg" variant="ghost" className="w-full">
+          <Image 
+            src="/finish.svg" 
             alt="Italian" 
             height={32} 
             width={40}
             className="mr-4 rounded-md"
           />
-          Italian
-        </Button>
-        <Button size="lg" variant="ghost" className="w-full">
-          <Image 
-            src="/jp.svg" 
-            alt="Japanese" 
-            height={32} 
-            width={40}
-            className="mr-4 rounded-md"
-          />
-          Japanese
+          Redeem for exciting  rewards!
         </Button>
       </div>
     </footer>

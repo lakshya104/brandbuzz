@@ -15,23 +15,23 @@ export const Sidebar = ({ className }) => {
         className
       )}
     >
-      <Link href="/learn">
+      <Link href="/">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
-          <Image src="../public/next.svg" height={40} width={40} alt="logo" />
+          <Image src="/logo.svg" height={80} width={60} alt="logo" />
           <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
             Buzz
           </h1>
         </div>
       </Link>
       <div className="flex flex-col gap-y-2 flex-1">
-        <SidebarItem label="Feed" href="/feed" iconSrc="/learn.svg" />
-        <SidebarItem label="Quiz" href="/quests" iconSrc="/quests.svg" />
+        <SidebarItem label="Feed" href="/feed" iconSrc="/feed.svg" />
+        <SidebarItem label="Quiz" href="/quiz" iconSrc="/quiz.svg" />
         <SidebarItem
           label="Leaderboard"
           href="/leaderboard"
           iconSrc="/leaderboard.svg"
         />
-        <SidebarItem label="Redeem" href="/shop" iconSrc="/shop.svg" />
+        <SidebarItem label="Redeem" href="/redeem" iconSrc="/redeem.svg" />
       </div>
       <div className="p-4">
         <ClerkLoading>
