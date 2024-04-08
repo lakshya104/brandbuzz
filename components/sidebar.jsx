@@ -32,6 +32,8 @@ export const Sidebar = ({ className }) => {
           iconSrc="/leaderboard.svg"
         />
         <SidebarItem label="Redeem" href="/redeem" iconSrc="/redeem.svg" />
+        <SidebarItem label="Support" href="/support" iconSrc="/support.svg" />
+        <SidebarItem label="T&C" href="/termsConditions" iconSrc="/terms.svg" />
       </div>
       <div className="p-4">
         <ClerkLoading>
