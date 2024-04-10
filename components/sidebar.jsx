@@ -17,14 +17,14 @@ export const Sidebar = ({ className }) => {
     >
       <Link href="/" className="hidden lg:block">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
-          <Image src="/logo.svg" height={80} width={60} alt="logo" />
+          <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
           <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
             Buzz
           </h1>
         </div>
       </Link>
       <div className="lg:hidden pt-8 pl-4 pb-7 flex items-center gap-x-3">
-        <Image src="/logo.svg" height={80} width={60} alt="logo" />
+        <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
         <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
           Buzz
         </h1>

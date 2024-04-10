@@ -1,8 +1,8 @@
-import { Nunito } from "next/font/google";
+import { Inter   } from "next/font/google";
 import "./globals.css";
 // import { ClerkProvider } from "@clerk/nextjs";
 
-const font = Nunito({ subsets: ["latin"] });
+const font = Inter  ({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Buzz",
