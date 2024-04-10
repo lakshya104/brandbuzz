@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Loader } from "lucide-react";
-import {
-  ClerkLoaded,
-  ClerkLoading,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs";
+// import {
+//   ClerkLoaded,
+//   ClerkLoading,
+//   SignInButton,
+//   SignUpButton,
+//   SignedIn,
+//   SignedOut,
+// } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -22,36 +22,36 @@ export default function Home() {
             Watch, answer, and win with Buzz.
           </h1>
           <div className="flex flex-col items-center gap-y-3 max-w-[330px] w-full">
-            <ClerkLoading>
-              <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
-            </ClerkLoading>
+            {/* <ClerkLoading> */}
+              {/* <Loader className="h-5 w-5 text-muted-foreground animate-spin" /> */}
+            {/* </ClerkLoading>
             <ClerkLoaded>
               <SignedOut>
                 <SignUpButton
                   mode="modal"
                   afterSignInUrl="/feed"
                   afterSignUpUrl="/feed"
-                >
+                > */}
                   <Button size="lg" variant="super" className="w-full">
                     Get Started
                   </Button>
-                </SignUpButton>
+                {/* </SignUpButton>
                 <SignInButton
                   mode="modal"
                   afterSignInUrl="/feed"
                   afterSignUpUrl="/feed"
-                >
+                > */}
                   <Button size="lg" variant="primaryOutline" className="w-full">
                     I already have an account
                   </Button>
-                </SignInButton>
+                {/* </SignInButton>
               </SignedOut>
-              <SignedIn>
+              <SignedIn> */}
                 <Button size="lg" variant="primary" className="w-full" asChild>
-                  <Link href="/feed">Continue Watching</Link>
+                  <Link href="/feed">Continue Winning</Link>
                 </Button>
-              </SignedIn>
-            </ClerkLoaded>
+              {/* </SignedIn>
+            </ClerkLoaded> */}
           </div>
         </div>
       </div>

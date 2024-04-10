@@ -1,7 +1,6 @@
 import { Nunito } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+// import { ClerkProvider } from "@clerk/nextjs";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -15,13 +14,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
       <html lang="en">
-        <Head>
-          <link rel="icon" href="/app/favicon.ico" />
-        </Head>
         <body className={font.className}>{children}</body>
       </html>
-    </ClerkProvider>
   );
 }
