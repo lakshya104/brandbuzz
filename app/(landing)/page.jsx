@@ -33,7 +33,7 @@ export default function Home() {
                   afterSignUpUrl="/feed"
                 > */}
                   <Button size="lg" variant="super" className="w-full">
-                    Get Started
+                 <Link href="/auth/register"> Get Started </Link>
                   </Button>
                 {/* </SignUpButton>
                 <SignInButton
@@ -41,9 +41,9 @@ export default function Home() {
                   afterSignInUrl="/feed"
                   afterSignUpUrl="/feed"
                 > */}
-                  <Button size="lg" variant="primaryOutline" className="w-full">
+                  {/* <Button size="lg" variant="primaryOutline" className="w-full">
                     I already have an account
-                  </Button>
+                  </Button> */}
                 {/* </SignInButton>
               </SignedOut>
               <SignedIn> */}

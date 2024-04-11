@@ -11,11 +11,12 @@ export const CardWrapper = ({
   backButtonLabel,
   backButtonHref,
   showSocial,
+  heading
 }) => {
   return (
     <Card className="shadow-md w-[380px]">
       <CardHeader>
-        <Header label={headerLabel} />
+        <Header label={headerLabel} heading={heading}/>
       </CardHeader>
       <CardContent>{children}</CardContent>
       {showSocial && (

@@ -16,7 +16,7 @@ export const RegisterSchema = z.object({
   password: z.string().min(6,{
     message:"Minimum password length must be 6 characters"
   }),
-  name: z.string().min(6,{
+  name: z.string().min(1,{
     message:"Name is required"
   }),
 });
