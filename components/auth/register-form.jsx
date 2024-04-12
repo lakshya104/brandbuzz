@@ -47,7 +47,7 @@ export const RegisterForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Create an Account on Buzz"
+      headerLabel="Create your Account on Buzz"
       backButtonLabel="Already have an account?"
       backButtonHref="/auth/login"
       showSocial

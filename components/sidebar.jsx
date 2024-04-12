@@ -1,13 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-// import { ClerkLoading, ClerkLoaded, UserButton } from "@clerk/nextjs";
-import { Loader } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-
 import { SidebarItem } from "./sidebar-item";
 import { Button } from "./ui/button";
 import { signOut } from "@/auth";
+import SignOutButton from "./auth/signout-button";
 
 export const Sidebar = ({ className }) => {
   return (
@@ -43,15 +41,24 @@ export const Sidebar = ({ className }) => {
         <SidebarItem label="Support" href="/support" iconSrc="/support.svg" />
         <SidebarItem label="T&C" href="/termsConditions" iconSrc="/terms.svg" />
       </div>
-      <div className="px-4 py-8">
+      <div className="lg:hidden px-4 py-8">
         <form
           action={async () => {
             "use server";
             await signOut();
           }}
         >
-          <Button variant="dangerOutline" className=" bg-slate-100" type="submit">Sign Out</Button>
+          <Button
+            variant="dangerOutline"
+            className=" bg-slate-100"
+            type="submit"
+          >
+            Sign Out
+          </Button>
         </form>
+      </div>
+      <div className="hidden lg:block px-4 py-8">
+        <SignOutButton />
       </div>
     </div>
   );

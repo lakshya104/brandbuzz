@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { LoginButton } from "@/components/auth/login-button";
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
+import SignOutButton from "@/components/auth/signout-button";
 
 export const Header = async () => {
   const session = await auth();
@@ -16,25 +17,12 @@ export const Header = async () => {
         </div>
         {!session ? (
           <LoginButton mode="modal" asChild>
-            <Button size="lg" variant="ghost">
+            <Button size="lg" className="bg-slate-100 text-sky-800" variant="ghost">
               Login
             </Button>
           </LoginButton>
         ) : (
-          <form
-            action={async () => {
-              "use server";
-              await signOut();
-            }}
-          >
-            <Button
-              variant="dangerOutline"
-              className=" bg-slate-100"
-              type="submit"
-            >
-              Sign Out
-            </Button>
-          </form>
+          <SignOutButton/>
         )}
       </div>
     </header>
