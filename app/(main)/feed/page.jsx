@@ -1,12 +1,5 @@
-import { redirect } from "next/navigation";
-
-// import { Promo } from "@/components/promo";
-// import { Quests } from "@/components/quests";
 import { FeedWrapper } from "@/components/feed-wrapper";
-// import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
-
-// import { Unit } from "./unit";
 import { Header } from "./header";
 import { auth } from "@/auth";
 
@@ -15,8 +8,13 @@ const LearnPage = async () => {
   return (
     <div className="flex flex-row-reverse gap-[48px] px-6">
       {/* <StickyWrapper>{JSON.stringify(session)}</StickyWrapper> */}
-      <Header title={"Home"} />
-      {/* <FeedWrapper>World</FeedWrapper> */}
+      {/* <Header title={"Home"} /> */}
+      {console.log(session)}
+      <FeedWrapper>
+        <h4 className="font-medium text-sky-900">
+          Welcome to Buzz {session.user.name}!
+        </h4>
+      </FeedWrapper>
     </div>
   );
 };
