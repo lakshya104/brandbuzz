@@ -8,14 +8,15 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 
 // import { Unit } from "./unit";
 import { Header } from "./header";
+import { auth } from "@/auth";
 
 const LearnPage = async () => {
-
+  const session = await auth();
   return (
     <div className="flex flex-row-reverse gap-[48px] px-6">
-      <StickyWrapper>Hello</StickyWrapper>
+      {/* <StickyWrapper>{JSON.stringify(session)}</StickyWrapper> */}
       <Header title={"Home"} />
-      <FeedWrapper>World</FeedWrapper>
+      {/* <FeedWrapper>World</FeedWrapper> */}
     </div>
   );
 };

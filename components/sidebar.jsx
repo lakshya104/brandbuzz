@@ -6,6 +6,8 @@ import { Loader } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { SidebarItem } from "./sidebar-item";
+import { Button } from "./ui/button";
+import { signOut } from "@/auth";
 
 export const Sidebar = ({ className }) => {
   return (
@@ -41,13 +43,15 @@ export const Sidebar = ({ className }) => {
         <SidebarItem label="Support" href="/support" iconSrc="/support.svg" />
         <SidebarItem label="T&C" href="/termsConditions" iconSrc="/terms.svg" />
       </div>
-      <div className="p-4">
-        {/* <ClerkLoading>
-          <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
-        </ClerkLoading>
-        <ClerkLoaded>
-          <UserButton afterSignOutUrl="/" />
-        </ClerkLoaded> */}
+      <div className="px-4 py-8">
+        <form
+          action={async () => {
+            "use server";
+            await signOut();
+          }}
+        >
+          <Button variant="dangerOutline" className=" bg-slate-100" type="submit">Sign Out</Button>
+        </form>
       </div>
     </div>
   );
