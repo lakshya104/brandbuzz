@@ -1,18 +1,10 @@
 import Image from "next/image";
-import { Loader } from "lucide-react";
-// import {
-//   ClerkLoaded,
-//   ClerkLoading,
-//   SignedIn,
-//   SignedOut,
-//   SignInButton,
-//   UserButton,
-// } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { LoginButton } from "@/components/auth/login-button";
+import { auth, signOut } from "@/auth";
 
-export const Header = () => {
+export const Header = async () => {
+  const session = await auth();
   return (
     <header className="h-20 w-full border-b-2 border-slate-200 px-4">
       <div className="lg:max-w-screen-lg mx-auto flex items-center justify-between h-full">
@@ -22,11 +14,28 @@ export const Header = () => {
             Buzz
           </h1>
         </div>
-        <LoginButton >
-          <Button size="lg" variant="ghost">
-            Login
-          </Button>
-        </LoginButton>
+        {!session ? (
+          <LoginButton mode="modal" asChild>
+            <Button size="lg" variant="ghost">
+              Login
+            </Button>
+          </LoginButton>
+        ) : (
+          <form
+            action={async () => {
+              "use server";
+              await signOut();
+            }}
+          >
+            <Button
+              variant="dangerOutline"
+              className=" bg-slate-100"
+              type="submit"
+            >
+              Sign Out
+            </Button>
+          </form>
+        )}
       </div>
     </header>
   );
