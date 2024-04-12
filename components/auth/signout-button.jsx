@@ -18,7 +18,7 @@ const SignOutButton = ({ mode }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{logout}</DialogTrigger>
-      <DialogContent className="w-[90%] lg:w-auto py-6 rounded-sm px-4 lg:px-12 z-50">
+      <DialogContent className="shadow-inner w-[380px] py-8 rounded-sm px-4 lg:px-12 z-50">
         <div className="flex items-center justify-center flex-col space-y-4">
           <h3 className="font-semibold">Are you sure you want to Sign out?</h3>
           <form
@@ -29,10 +29,10 @@ const SignOutButton = ({ mode }) => {
           >
             <Button
               variant="dangerOutline"
-              className=" bg-slate-100"
+              className=" bg-slate-100 my-2 px-12 border-2 border-slate-500"
               type="submit"
             >
-              Sign Out
+              Yes
             </Button>
           </form>
         </div>

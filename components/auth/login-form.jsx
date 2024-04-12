@@ -38,8 +38,8 @@ export const LoginForm = () => {
 
     startTransition(() => {
       login(values).then((data) => {
-        if(data.error) setError(data.error);
-        if(data.success) setSuccess(data.success);
+        if (data && data.error) setError(data.error);
+        if (data && data.success) setSuccess(data.success);
       });
     });
   };
