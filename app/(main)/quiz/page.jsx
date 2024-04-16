@@ -50,7 +50,7 @@ const Quiz = () => {
   ];
 
   return (
-    <div className="flex gap-[48px] px-6">
+    <div className="flex gap-[48px]">
       <FeedWrapper>
         <div className="flex justify-center items-center flex-col">
           {mediaJSON.map((media, index) => (
