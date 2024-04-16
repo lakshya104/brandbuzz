@@ -2,7 +2,6 @@
 
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub, FaGooglePlus } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 

@@ -4,6 +4,7 @@ import { RegisterSchema } from "@/schemas";
 import bcryptjs from "bcryptjs";
 import { db } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
+import { redirect } from "next/navigation";
 
 export const register = async (values) => {
   const validatedFields = RegisterSchema.safeParse(values);
@@ -14,7 +15,7 @@ export const register = async (values) => {
 
   const { email, password, name } = validatedFields.data;
   const hashedPassword = await bcryptjs.hash(password, 10);
-  
+
   const existingUser = await getUserByEmail(email);
 
   if (existingUser) {
@@ -29,5 +30,6 @@ export const register = async (values) => {
     },
   });
 
+  redirect("/login");
   return { success: "Account Created Successfully" };
 };

@@ -6,7 +6,7 @@ import SignOutButton from "./auth/signout-button";
 
 export const MobileHeader = () => {
   return (
-    <nav className="lg:hidden px-6 h-[50px] flex items-center justify-between fixed top-0 w-full z-50 border-b-sky-700 border">
+    <nav className="lg:hidden px-6 h-[50px] flex items-center bg-white justify-between fixed top-0 w-full z-50 border-b-sky-700 border">
       <div className="flex items-center w-full">
       <MobileSidebar />
       <div className="pt-8 pl-2 pb-7 flex items-center">
