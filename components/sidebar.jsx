@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -6,6 +5,7 @@ import { SidebarItem } from "./sidebar-item";
 import { Button } from "./ui/button";
 import { signOut } from "@/auth";
 import SignOutButton from "./auth/signout-button";
+import { ProgressBarLink } from "./progress-bar";
 
 export const Sidebar = ({ className }) => {
   return (
@@ -15,14 +15,14 @@ export const Sidebar = ({ className }) => {
         className
       )}
     >
-      <Link href="/" className="hidden lg:block">
+      <ProgressBarLink href="/" className="hidden lg:block">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
           <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
             Buzz
           </h1>
         </div>
-      </Link>
+      </ProgressBarLink>
       <div className="lg:hidden pt-8 pl-4 pb-7 flex items-center gap-x-3">
         <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
         <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">

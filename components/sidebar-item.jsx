@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { ProgressBarLink } from "./progress-bar";
 
 
 export const SidebarItem = ({
@@ -21,7 +21,7 @@ export const SidebarItem = ({
       className="justify-start h-[52px]"
       asChild
     >
-      <Link href={href}>
+      <ProgressBarLink href={href}>
         <Image
           src={iconSrc}
           alt={label}
@@ -30,7 +30,7 @@ export const SidebarItem = ({
           width={32}
         />
         {label}
-      </Link>
+      </ProgressBarLink>
     </Button>
   );
 };

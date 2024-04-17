@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { auth } from "@/auth";
+import { ProgressBarLink } from "@/components/progress-bar";
 
 export default async function Home() {
   const session = await auth();
@@ -17,11 +17,11 @@ export default async function Home() {
         <div className="flex flex-col items-center gap-y-3 max-w-[330px] w-full">
           {!session ? (
             <Button size="lg" variant="super" className="w-full">
-              <Link href="/auth/register"> Get Started </Link>
+              <ProgressBarLink href="/auth/register"> Get Started </ProgressBarLink>
             </Button>
           ) : (
             <Button size="lg" variant="primary" className="w-full" asChild>
-              <Link href="/feed">Continue Winning</Link>
+              <ProgressBarLink href="/feed">Continue Winning</ProgressBarLink>
             </Button>
           )}
         </div>

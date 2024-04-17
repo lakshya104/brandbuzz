@@ -1,11 +1,11 @@
 "use client";
-import Link from "next/link";
 import { Button } from "../ui/button";
+import { ProgressBarLink } from "../progress-bar";
 
 export const BackButton = ({ href, label }) => {
   return (
     <Button variant="superOutline" className="font-normal w-full" size="sm" asChild>
-      <Link href={href}>{label}</Link>
+      <ProgressBarLink href={href}>{label}</ProgressBarLink>
     </Button>
   );
 };
