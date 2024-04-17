@@ -12,7 +12,7 @@ const VideoPlayer = ({ title, videosrc, description }) => {
         url={videosrc}
         playing={true}
         controls={true}
-        light={false}
+        light={"https://buzz-navy.vercel.app/watch.svg"}
         pip={true}
         muted={true}
         stopOnUnmount={false}

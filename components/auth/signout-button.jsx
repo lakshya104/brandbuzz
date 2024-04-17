@@ -31,6 +31,7 @@ const SignOutButton = ({ mode }) => {
               await signOut({
                 redirectTo:'/'
               });
+              
             }}
           >
             <Button

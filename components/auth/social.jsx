@@ -4,11 +4,17 @@ import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "../ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { useToast } from "../ui/use-toast";
 
 export const Social = () => {
+  const { toast } = useToast();
   const onClick = (provider) => {
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT,
+    });
+    toast({
+      title: "Signing In",
+      description: `Trying signing in with ${provider}`,
     });
   };
 
