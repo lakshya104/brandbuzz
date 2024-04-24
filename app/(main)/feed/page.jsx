@@ -8,7 +8,7 @@ import { mediaJSON } from "@/lib/demoData";
 const LearnPage = async () => {
   const session = await auth();
   return (
-    <div className="flex gap-[48px] px-6">
+    <div className="flex gap-[48px] ">
       <FeedWrapper>
         <Header title={"Home"} />
         <div className="flex justify-center items-center flex-col">
