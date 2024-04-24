@@ -5,6 +5,7 @@ import bcryptjs from "bcryptjs";
 import { db } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export const register = async (values) => {
   const validatedFields = RegisterSchema.safeParse(values);
@@ -29,7 +30,7 @@ export const register = async (values) => {
       password: hashedPassword,
     },
   });
-
+  revalidatePath("/login");
   redirect("/login");
-  return { success: "Account Created Successfully" };
+  // return { success: "Account Created Successfully" };  
 };

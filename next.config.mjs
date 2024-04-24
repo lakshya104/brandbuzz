@@ -5,6 +5,7 @@ const nextConfig = {
   env: {
     AUTH_SECRET: "98b8ac86c50e09ce044f8dc6c4596c40",
   },
+  output:"standalone"
 };
 
 export default nextConfig;
