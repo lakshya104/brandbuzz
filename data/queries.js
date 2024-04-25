@@ -5,3 +5,4 @@ export const getRewards = cache(async () => {
   const rewards = await db.reward.findMany();
   return rewards;
 });
+

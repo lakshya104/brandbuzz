@@ -4,9 +4,9 @@ import { Header } from "./header";
 import { auth } from "@/auth";
 import VideoPlayer from "@/components/video-player";
 import { mediaJSON } from "@/lib/demoData";
-import { getUserPoints } from "@/data/user";
+import { getUserPoints } from "@/actions/redeem";
 
-const LearnPage = async () => {
+const Feed = async () => {
   const session = await auth();
   const points = await getUserPoints(session.user.email);
   return (
@@ -35,4 +35,4 @@ const LearnPage = async () => {
   );
 };
 
-export default LearnPage;
+export default Feed;

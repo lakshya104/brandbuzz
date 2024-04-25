@@ -1,8 +1,9 @@
 "use client";
 
 import Card from "./card";
+import { pointIncrease } from "@/actions/redeem";
 
-const List = ({ rewards, activeRewardId }) => {
+const List = ({ rewards, userEmail }) => {
   return (
     <div className="pt-6 grid grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))] gap-4">
       {rewards.map((reward) => (
@@ -12,9 +13,8 @@ const List = ({ rewards, activeRewardId }) => {
           name={reward.name}
           image={reward.image}
           description={reward.description}
-          onClick={() => {}}
           disabled={false}
-          active={reward.id == activeRewardId}
+          userEmail={userEmail}
         />
       ))}
     </div>
