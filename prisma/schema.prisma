@@ -20,6 +20,7 @@ model User {
   points          Int              @default(0)
   accounts        Account[]
   redeemedRewards RedeemedReward[]
+  pointsTable     Points?
 }
 
 model Account {
@@ -50,13 +51,20 @@ model Reward {
 }
 
 model RedeemedReward {
-  id        String   @id @default(cuid())
-  userId    String
-  rewardId  String
+  id         String   @id @default(cuid())
+  userId     String
+  rewardId   String
   redeemedAt DateTime @default(now())
 
   user   User   @relation(fields: [userId], references: [id])
   reward Reward @relation(fields: [rewardId], references: [id])
 
   @@index([userId, rewardId], name: "unique_redeemed_reward")
+}
+
+model Points {
+  userId String @id
+  points Int    @default(0)
+
+  user User @relation(fields: [userId], references: [id])
 }

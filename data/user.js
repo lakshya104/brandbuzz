@@ -25,3 +25,20 @@ export const getUserById = async (id) => {
     null;
   }
 };
+
+export const getUserPoints = async (email) => {
+  try {
+    const user = await db.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (user) {
+      return user.points;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user points:', error);
+  }
+};

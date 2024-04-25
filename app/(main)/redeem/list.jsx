@@ -11,9 +11,10 @@ const List = ({ rewards, activeRewardId }) => {
           id={reward.id}
           name={reward.name}
           image={reward.image}
+          description={reward.description}
           onClick={() => {}}
           disabled={false}
-          active={reward.id === activeRewardId}
+          active={reward.id == activeRewardId}
         />
       ))}
     </div>
