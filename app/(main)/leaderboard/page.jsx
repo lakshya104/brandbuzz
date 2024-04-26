@@ -14,7 +14,7 @@ const Leaderboard = async () => {
         <h1 className="text-xl font-bold text-sky-800">Leader Board</h1>
         <RefreshBtn />
       </div>
-      <PointsTable pointBoard={pointBoard} user={session.user.name}/>
+      <PointsTable pointBoard={pointBoard} email={session.user.email}/>
     </div>
   );
 };

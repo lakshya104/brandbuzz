@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-const PointsTable = ({ pointBoard, user }) => {
+const PointsTable = ({ pointBoard, email }) => {
   const [leaderBoard, setLeaderboard] = useState(pointBoard);
 
   useEffect(() => {
@@ -43,20 +43,20 @@ const PointsTable = ({ pointBoard, user }) => {
         {leaderBoard.map((item) => (
           <TableRow
             key={item.id}
-            className={cn("font-medium", user === item.name && "bg-slate-200")}
+            className={cn("font-medium", email === item.email && "bg-slate-200")}
           >
             <TableCell
               className={cn(
                 "font-medium",
-                user === item.name && "text-sky-700"
+                email === item.email && "text-sky-700"
               )}
             >
-              {user === item.name ? item.name + " (You)" : item.name}
+              {email === item.email ? item.name + " (You)" : item.name}
             </TableCell>
             <TableCell
               className={cn(
                 "font-medium",
-                user === item.name && "text-sky-700"
+                email === item.email && "text-sky-700"
               )}
             >
               {item.email}
@@ -64,7 +64,7 @@ const PointsTable = ({ pointBoard, user }) => {
             <TableCell
               className={cn(
                 "text-right font-bold",
-                user === item.name && "text-sky-700"
+                email === item.email && "text-sky-700"
               )}
             >
               {item.points}
