@@ -108,7 +108,7 @@ export const getLeaderboard = async () => {
       },
       select: {
         id: true,
-        email:true,
+        email: true,
         name: true,
         points: true,
       },
@@ -116,6 +116,55 @@ export const getLeaderboard = async () => {
     return leaderboard;
   } catch (error) {
     console.error("Error fetching leaderboard:", error);
+    throw error;
+  }
+};
+
+// export const createQuestionWithAnswers = async () => {
+//   try {
+//     // Create the question
+//     const question = await db.question.create({
+//       data: {
+//         text: "Which country is known as the Land of the Rising Sun?",
+//         answers: {
+//           createMany: {
+//             data: [
+//               { text: "Japan", isCorrect: true },
+//               { text: "China", isCorrect: false },
+//               { text: "Korea", isCorrect: false },
+//               { text: "Vietnam", isCorrect: false },
+//             ],
+//           },
+//         },
+//       },
+//       include: {
+//         answers: true,
+//       },
+//     });
+
+//     // Get the question ID
+//     const questionId = question.id;
+
+//     console.log("Question created with ID:", questionId);
+//   } catch (error) {
+//     console.error("Error creating question:", error);
+//   }
+// };
+
+export const getAllQuestionsWithAnswers = async () => {
+  try {
+    // Fetch all questions with their answers
+    const questionsWithAnswers = await db.question.findMany({
+      include: {
+        answers: true,
+      },
+    });
+
+    console.log('Questions with answers:', questionsWithAnswers);
+    
+    return questionsWithAnswers;
+  } catch (error) {
+    console.error('Error fetching questions with answers:', error);
     throw error;
   }
 };
