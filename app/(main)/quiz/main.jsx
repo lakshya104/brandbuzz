@@ -27,6 +27,16 @@ const Main = ({ email, name }) => {
       <FeedWrapper>
         <div className="flex justify-center items-center flex-col">
           <h1 className="text-xl mb-8 font-bold text-sky-800">Quiz</h1>
+          <div className="lg:hidden flex flex-col justify-center items-center space-y-5 mb-5">
+            <h4 className="font-medium text-sky-900">
+              Welcome to Buzz {name}! <br />
+              {!points ? (
+                <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
+              ) : (
+                <p>Your Total Points are {points}</p>
+              )}
+            </h4>
+          </div>
           <div className="flex items-center justify-center space-x-8">
             <Button variant="danger" onClick={pointDecrement}>
               Decrease Points
@@ -40,7 +50,6 @@ const Main = ({ email, name }) => {
       <StickyWrapper>
         <h4 className="font-medium text-sky-900">
           Welcome to Buzz {name}! <br />
-          
           {!points ? (
             <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
           ) : (
