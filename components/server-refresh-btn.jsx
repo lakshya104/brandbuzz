@@ -8,9 +8,6 @@ const RefreshBtn = () => {
   const { toast } = useToast()
   const onClick = () => {
     router.refresh();
-    // toast("Table Refreshed", {
-    //   description: "Leaderboard Table refreshed successfully!",
-    // });
     toast({
       title: "Table Refreshed ",
       description: "Leaderboard Table refreshed successfully!",
