@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { signOut } from "@/auth";
 import SignOutButton from "./auth/signout-button";
 import { ProgressBarLink } from "./progress-bar";
+import { ProfileHeader } from "./profile-header";
 
 export const Sidebar = ({ className }) => {
   return (
@@ -57,8 +58,8 @@ export const Sidebar = ({ className }) => {
           </Button>
         </form>
       </div>
-      <div className="hidden lg:block px-4 py-8">
-        <SignOutButton />
+      <div className="hidden lg:block px-20 py-16">
+        <ProfileHeader/>
       </div>
     </div>
   );

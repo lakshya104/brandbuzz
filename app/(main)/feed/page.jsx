@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 import VideoPlayer from "@/components/video-player";
 import { mediaJSON } from "@/lib/demoData";
 import { getUserPoints } from "@/actions/redeem";
+import { ProfileHeader } from "@/components/profile-header";
 
 const Feed = async () => {
   const session = await auth();

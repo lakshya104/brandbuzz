@@ -2,6 +2,7 @@ import { MobileSidebar } from "./mobile-sidebar";
 import Image from "next/image";
 import SignOutButton from "./auth/signout-button";
 import { ProgressBarLink } from "./progress-bar";
+import { ProfileHeader } from "./profile-header";
 
 export const MobileHeader = () => {
   return (
@@ -17,7 +18,8 @@ export const MobileHeader = () => {
         </ProgressBarLink>
       </div>
       </div>
-    <SignOutButton mode="icon"/>
+    {/* <SignOutButton mode="icon"/> */}
+    <ProfileHeader/>
     </nav>
   );
 };
