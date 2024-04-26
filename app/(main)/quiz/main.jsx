@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const Main = ({ email, name }) => {
-  const [points, setPoints] = useState("...");
+  const [points, setPoints] = useState('');
   const [refetch, setRefetch] = useState(false);
 
   const pointIncrement = () => {
