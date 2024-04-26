@@ -28,14 +28,31 @@ const Main = ({ email, name }) => {
         <div className="flex justify-center items-center flex-col">
           <h1 className="text-xl mb-8 font-bold text-sky-800">Quiz</h1>
           <div className="lg:hidden flex flex-col justify-center items-center space-y-5 mb-5">
-            <h4 className="font-medium text-sky-900">
-              Welcome to Buzz {name}! <br />
-              {!points ? (
-                <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
-              ) : (
-                <p>Your Total Points are {points}</p>
-              )}
-            </h4>
+            <div className="flex justify-between items-center space-x-4 shadow-2xl py-6 px-8">
+              <div className="space-y-1">
+                <h4 className="text-sm text-sky-700 font-semibold">
+                  Welcome to Buzz
+                </h4>
+                <p className="text-sm">
+                  Name:{" "}
+                  <span className="font-semibold">{name}</span>
+                </p>
+                <p className="text-sm">
+                  Email:{" "}
+                  <span className="font-semibold">{email}</span>
+                </p>
+                <div className="flex items-center py-2">
+                  {!points ? (
+                    <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
+                  ) : (
+                    <span className="text-xs text-muted-foreground">
+                      {" "}
+                      Your Total Points are <strong>{points}</strong>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="flex items-center justify-center space-x-8">
             <Button variant="danger" onClick={pointDecrement}>
@@ -48,14 +65,29 @@ const Main = ({ email, name }) => {
         </div>
       </FeedWrapper>
       <StickyWrapper>
-        <h4 className="font-medium text-sky-900">
-          Welcome to Buzz {name}! <br />
-          {!points ? (
-            <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
-          ) : (
-            <p>Your Total Points are {points}</p>
-          )}
-        </h4>
+        <div className="flex justify-between items-center space-x-4 shadow-2xl py-6 px-8 mr-6">
+          <div className="space-y-1">
+            <h4 className="text-sm text-sky-700 font-semibold">
+              Welcome to Buzz
+            </h4>
+            <p className="text-sm">
+              Name: <span className="font-semibold">{name}</span>
+            </p>
+            <p className="text-sm">
+              Email: <span className="font-semibold">{email}</span>
+            </p>
+            <div className="flex items-center py-2">
+              {!points ? (
+                <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
+              ) : (
+                <span className="text-xs text-muted-foreground">
+                  {" "}
+                  Your Total Points are <strong>{points}</strong>
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
       </StickyWrapper>
     </>
   );

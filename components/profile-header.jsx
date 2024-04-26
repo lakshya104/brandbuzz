@@ -34,7 +34,7 @@ export async function ProfileHeader() {
             </AvatarFallback>
           </Avatar> */}
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">Buzz</h4>
+            <h4 className="text-sm text-sky-700 font-semibold">Welcome to Buzz</h4>
             <p className="text-sm">
               Name: <span className="font-semibold">{session.user.name}</span>
             </p>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { LoginButton } from "@/components/auth/login-button";
 import { auth } from "@/auth";
 import SignOutButton from "@/components/auth/signout-button";
+import ProfileDropdown from "@/components/profile-dropdown";
 
 export const Header = async () => {
   const session = await auth();
@@ -17,12 +18,23 @@ export const Header = async () => {
         </div>
         {!session ? (
           <LoginButton mode="modal" asChild>
-            <Button size="lg" className="bg-slate-100 text-sky-800" variant="ghost">
+            <Button
+              size="lg"
+              className="bg-slate-100 text-sky-800"
+              variant="ghost"
+            >
               Login
             </Button>
           </LoginButton>
         ) : (
-          <SignOutButton/>
+          <>
+            <div className="hidden lg:block">
+              <ProfileDropdown />
+            </div>
+            <div className="lg:hidden block">
+              <SignOutButton />
+            </div>
+          </>
         )}
       </div>
     </header>
