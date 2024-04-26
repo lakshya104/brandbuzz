@@ -2,9 +2,11 @@ import { getLeaderboard } from "@/actions/redeem";
 import React from "react";
 import PointsTable from "./points-table";
 import RefreshBtn from "@/components/server-refresh-btn";
+import { auth } from "@/auth";
 
 const Leaderboard = async () => {
   const pointBoard = await getLeaderboard();
+  const session = await auth()
 
   return (
     <div className="h-full max-w-[912px] px-3 mx-auto">
@@ -12,7 +14,7 @@ const Leaderboard = async () => {
         <h1 className="text-xl font-bold text-sky-800">Leader Board</h1>
         <RefreshBtn />
       </div>
-      <PointsTable pointBoard={pointBoard} />
+      <PointsTable pointBoard={pointBoard} user={session.user.name}/>
     </div>
   );
 };

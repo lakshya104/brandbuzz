@@ -5,9 +5,10 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 import { getUserPoints, pointDecrease, pointIncrease } from "@/actions/redeem";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Main = ({ email, name }) => {
-  const [points, setPoints] = useState('');
+  const [points, setPoints] = useState("");
   const [refetch, setRefetch] = useState(false);
 
   const pointIncrement = () => {
@@ -39,7 +40,12 @@ const Main = ({ email, name }) => {
       <StickyWrapper>
         <h4 className="font-medium text-sky-900">
           Welcome to Buzz {name}! <br />
-          Your Total Points are {points}
+          
+          {!points ? (
+            <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
+          ) : (
+            <p>Your Total Points are {points}</p>
+          )}
         </h4>
       </StickyWrapper>
     </>

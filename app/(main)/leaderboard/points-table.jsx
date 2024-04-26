@@ -10,9 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-const PointsTable = ({pointBoard}) => {
+const PointsTable = ({ pointBoard, user }) => {
   const [leaderBoard, setLeaderboard] = useState(pointBoard);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const PointsTable = ({pointBoard}) => {
 
   return (
     <Table>
-      <TableCaption>This is a Leaderboard.</TableCaption>
+      <TableCaption>This is a Points Table.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">User</TableHead>
@@ -40,10 +41,32 @@ const PointsTable = ({pointBoard}) => {
       </TableHeader>
       <TableBody>
         {leaderBoard.map((item) => (
-          <TableRow key={item.id}>
-            <TableCell className="font-medium">{item.name}</TableCell>
-            <TableCell>{item.email}</TableCell>
-            <TableCell className="text-right font-bold">
+          <TableRow
+            key={item.id}
+            className={cn("font-medium", user === item.name && "bg-slate-200")}
+          >
+            <TableCell
+              className={cn(
+                "font-medium",
+                user === item.name && "text-sky-700"
+              )}
+            >
+              {user === item.name ? item.name + " (You)" : item.name}
+            </TableCell>
+            <TableCell
+              className={cn(
+                "font-medium",
+                user === item.name && "text-sky-700"
+              )}
+            >
+              {item.email}
+            </TableCell>
+            <TableCell
+              className={cn(
+                "text-right font-bold",
+                user === item.name && "text-sky-700"
+              )}
+            >
               {item.points}
             </TableCell>
           </TableRow>
