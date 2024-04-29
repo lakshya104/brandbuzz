@@ -4,7 +4,6 @@ import { FeedWrapper } from "@/components/feed-wrapper";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { getUserPoints, pointDecrease, pointIncrease } from "@/actions/redeem";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import Questions from "./questions";
 

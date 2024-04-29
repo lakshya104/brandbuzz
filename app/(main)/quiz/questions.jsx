@@ -4,10 +4,11 @@ import { Ban } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { createUserAnswer, hasUserAnsweredQuestion } from "@/actions/redeem";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Questions = ({ ques, inc, dec, id }) => {
-  const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(false);
+  const [loadingBtn, setLoadingBtn] = useState(true);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
   const handleIsAnswered = useCallback(
@@ -27,7 +28,7 @@ const Questions = ({ ques, inc, dec, id }) => {
   );
 
   useEffect(() => {
-    setLoading(false);
+    setLoadingBtn(false);
     const fetchAnsweredQuestions = async () => {
       const answeredQuestions = await Promise.all(
         ques.map((question) => handleIsAnswered(question.id))
@@ -55,24 +56,28 @@ const Questions = ({ ques, inc, dec, id }) => {
                 <div className="flex justify-start items-center">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button
-                        disabled={loading || answeredQuestions[index]}
-                        onClick={() => {
-                          setLoading(true);
-                          setTimeout(() => {
-                            setLoading(false);
-                          }, 1000);
-                          if (answer.isCorrect) {
-                            inc();
-                          } else {
-                            dec();
-                          }
-                          createUserAnswer(id, answer.questionId);
-                        }}
-                        className="my-1 text-[12px] lg:text-[15px]"
-                      >
-                        {answer.text}
-                      </Button>
+                      {loadingBtn ? (
+                        <Skeleton className="h-[35px] bg-slate-200 rounded-none mt-2 w-[300px]" />
+                      ) : (
+                        <Button
+                          disabled={loading || answeredQuestions[index]}
+                          onClick={() => {
+                            setLoading(true);
+                            setTimeout(() => {
+                              setLoading(false);
+                            }, 1000);
+                            if (answer.isCorrect) {
+                              inc();
+                            } else {
+                              dec();
+                            }
+                            createUserAnswer(id, answer.questionId);
+                          }}
+                          className="my-1 text-[12px] lg:text-[15px]"
+                        >
+                          {answer.text}
+                        </Button>
+                      )}
                     </DialogTrigger>
                     <DialogContent className="shadow-inner w-[300px] py-8 rounded- px-4 lg:px-12 z-50">
                       <div className="flex items-center justify-center flex-col space-y-4">
@@ -98,7 +103,9 @@ const Questions = ({ ques, inc, dec, id }) => {
               </li>
             ))}
             {answeredQuestions[index] && (
-              <p className="text-xs text-muted-foreground">* This question has been answered by you.</p>
+              <p className="text-xs text-red-500">
+                * This question has been answered by you.
+              </p>
             )}
           </ul>
         </div>
