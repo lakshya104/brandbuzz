@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import Questions from "./questions";
 
-const Main = ({ email, name, ques }) => {
+const Main = ({ email, name, ques, id }) => {
   const [points, setPoints] = useState("");
   const [refetch, setRefetch] = useState(false);
 
@@ -54,7 +54,7 @@ const Main = ({ email, name, ques }) => {
             </div>
           </div>
           <div className="flex items-start flex-col justify-start">
-            <Questions ques={ques} inc={pointIncrement} dec={pointDecrement} />
+            <Questions ques={ques} inc={pointIncrement} dec={pointDecrement} id={id}/>
           </div>
         </div>
       </FeedWrapper>

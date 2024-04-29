@@ -1,15 +1,51 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Ban } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { createUserAnswer, hasUserAnsweredQuestion } from "@/actions/redeem";
 
-const Questions = ({ ques, inc, dec }) => {
-  const [loading, setLoading] = useState(false);
+const Questions = ({ ques, inc, dec, id }) => {
+  const [loading, setLoading] = useState(true);
+
+  const [answeredQuestions, setAnsweredQuestions] = useState([]);
+
+  const handleIsAnswered = useCallback(
+    async (qid) => {
+      try {
+        const answered = await hasUserAnsweredQuestion(id, qid);
+        return answered;
+      } catch (error) {
+        console.error(
+          "Error checking if user has answered the question:",
+          error
+        );
+        return false;
+      }
+    },
+    [id]
+  );
+
+  useEffect(() => {
+    setLoading(false);
+    const fetchAnsweredQuestions = async () => {
+      const answeredQuestions = await Promise.all(
+        ques.map((question) => handleIsAnswered(question.id))
+      );
+      setAnsweredQuestions(answeredQuestions);
+    };
+
+    fetchAnsweredQuestions();
+  }, [ques, loading, handleIsAnswered]);
+
   return (
-    <>
-      {ques.map((question) => (
-        <div key={question.id} className=" lg:border-r w-full lg:pr-6">
+    <div className="flex items-start flex-col justify-start">
+      {ques.map((question, index) => (
+        <div
+          key={question.id}
+          onClick={() => handleIsAnswered(question.id)}
+          className="lg:border-r w-full lg:pr-6"
+        >
           <h2 className="font-semibold lg:text-xl text-sky-800 mt-2 lg:mt-3.5 ml-5">
             {question.text}
           </h2>
@@ -20,7 +56,7 @@ const Questions = ({ ques, inc, dec }) => {
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button
-                        disabled={loading}
+                        disabled={loading || answeredQuestions[index]}
                         onClick={() => {
                           setLoading(true);
                           setTimeout(() => {
@@ -31,6 +67,7 @@ const Questions = ({ ques, inc, dec }) => {
                           } else {
                             dec();
                           }
+                          createUserAnswer(id, answer.questionId);
                         }}
                         className="my-1 text-[12px] lg:text-[15px]"
                       >
@@ -60,10 +97,13 @@ const Questions = ({ ques, inc, dec }) => {
                 </div>
               </li>
             ))}
+            {answeredQuestions[index] && (
+              <p className="text-xs text-muted-foreground">* This question has been answered by you.</p>
+            )}
           </ul>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

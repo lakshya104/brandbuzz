@@ -23,6 +23,13 @@ export const redeemRewardForUser = async (rewardId) => {
   }
 };
 
+export const getUserId = async () => {
+  const session = await auth();
+  const userEmail = session.user.email;
+  const user = await getUserByEmail(userEmail);
+  return user.id;
+};
+
 export const pointIncrease = async () => {
   const session = await auth();
   const email = session.user.email;
@@ -159,11 +166,44 @@ export const getAllQuestionsWithAnswers = async () => {
       },
     });
 
-    console.log('Questions with answers:', questionsWithAnswers);
-    
+    console.log("Questions with answers:", questionsWithAnswers);
+
     return questionsWithAnswers;
   } catch (error) {
-    console.error('Error fetching questions with answers:', error);
+    console.error("Error fetching questions with answers:", error);
+    throw error;
+  }
+};
+
+export const createUserAnswer = async (userId, questionId) => {
+  try {
+    const userAnswer = await db.userAnswer.create({
+      data: {
+        userId: userId,
+        questionId: questionId,
+      },
+    });
+    return userAnswer;
+  } catch (error) {
+    console.error("Error creating user answer:", error);
+    throw error;
+  }
+};
+
+export const hasUserAnsweredQuestion = async (userId, questionId) => {
+  try {
+    const userAnswer = await db.userAnswer.findUnique({
+      where: {
+        unique_user_question_answer: {
+          userId: userId,
+          questionId: questionId,
+        },
+      },
+    });
+
+    return !!userAnswer;
+  } catch (error) {
+    console.error("Error checking user answer:", error);
     throw error;
   }
 };
