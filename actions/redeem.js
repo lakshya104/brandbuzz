@@ -153,7 +153,6 @@ export const getLeaderboard = async () => {
 
 export const getAllQuestionsWithAnswers = async () => {
   try {
-    // Fetch all questions with their answers
     const questionsWithAnswers = await db.question.findMany({
       include: {
         answers: true,

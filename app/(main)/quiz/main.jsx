@@ -6,8 +6,9 @@ import { getUserPoints, pointDecrease, pointIncrease } from "@/actions/redeem";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import Questions from "./questions";
 
-const Main = ({ email, name }) => {
+const Main = ({ email, name, ques }) => {
   const [points, setPoints] = useState("");
   const [refetch, setRefetch] = useState(false);
 
@@ -34,12 +35,10 @@ const Main = ({ email, name }) => {
                   Welcome to Buzz
                 </h4>
                 <p className="text-sm">
-                  Name:{" "}
-                  <span className="font-semibold">{name}</span>
+                  Name: <span className="font-semibold">{name}</span>
                 </p>
                 <p className="text-sm">
-                  Email:{" "}
-                  <span className="font-semibold">{email}</span>
+                  Email: <span className="font-semibold">{email}</span>
                 </p>
                 <div className="flex items-center py-2">
                   {!points ? (
@@ -54,13 +53,8 @@ const Main = ({ email, name }) => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center space-x-8">
-            <Button variant="danger" onClick={pointDecrement}>
-              Decrease Points
-            </Button>
-            <Button variant="super" onClick={pointIncrement}>
-              Increase Points
-            </Button>
+          <div className="flex items-start flex-col justify-start">
+            <Questions ques={ques} inc={pointIncrement} dec={pointDecrement} />
           </div>
         </div>
       </FeedWrapper>
