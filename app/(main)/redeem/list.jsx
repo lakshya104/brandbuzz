@@ -11,7 +11,7 @@ const List = ({ rewards, userEmail, point }) => {
     const fetchPoints = async () => {
       const userPoints = await getUserPoints(userEmail);
       setPoints(userPoints);
-      if (points > 50) {
+      if (points > 25) {
         setDisabled(false);
       } else {
         setDisabled(true);
