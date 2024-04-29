@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Ban } from "lucide-react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const Questions = ({ ques, inc, dec }) => {
+  const [loading, setLoading] = useState(false);
   return (
     <>
       {ques.map((question) => (
@@ -18,7 +20,12 @@ const Questions = ({ ques, inc, dec }) => {
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button
+                        disabled={loading}
                         onClick={() => {
+                          setLoading(true);
+                          setTimeout(() => {
+                            setLoading(false);
+                          }, 1000);
                           if (answer.isCorrect) {
                             inc();
                           } else {
