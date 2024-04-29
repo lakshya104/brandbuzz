@@ -7,8 +7,8 @@ const Questions = ({ ques, inc, dec }) => {
   return (
     <>
       {ques.map((question) => (
-        <div key={question.id}>
-          <h2 className="font-semibold text-sky-800 mt-2 ml-5">
+        <div key={question.id} className=" lg:border-r w-full lg:pr-6">
+          <h2 className="font-semibold lg:text-xl text-sky-800 mt-2 lg:mt-3.5 ml-5">
             {question.text}
           </h2>
           <ul className="mb-5">
@@ -25,7 +25,7 @@ const Questions = ({ ques, inc, dec }) => {
                             dec();
                           }
                         }}
-                        className="my-1 text-[12px]"
+                        className="my-1 text-[12px] lg:text-[15px]"
                       >
                         {answer.text}
                       </Button>
