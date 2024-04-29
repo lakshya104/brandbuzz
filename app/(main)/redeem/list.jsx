@@ -38,8 +38,7 @@ const List = ({ rewards, userEmail, point }) => {
       </div>
       {disabled && (
         <p className="text-muted-foreground text-sm mt-5 ml-2 text-red-500">
-          * Your points must be greater than 25 for redeeming any of these
-          Items.
+         * You need at least 25 points to redeem any of these items.
         </p>
       )}
     </>
