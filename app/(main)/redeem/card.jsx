@@ -1,3 +1,4 @@
+"use client"
 import { redeemRewardForUser } from "@/actions/redeem";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -35,6 +36,7 @@ const Card = ({ id, name, image, disabled, description }) => {
         variant="sidebarOutline"
         className="w-32"
         onClick={() => setActive((prev) => !prev)}
+        disabled={disabled}
       >
         {" "}
         {active ? <Check className="stroke-[3] h-6 w-6" /> : "Select"}

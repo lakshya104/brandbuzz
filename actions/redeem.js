@@ -129,17 +129,17 @@ export const getLeaderboard = async () => {
 
 // export const createQuestionWithAnswers = async () => {
 //   try {
-//     // Create the question
-//     const question = await db.question.create({
+//     // Create the first question with answers
+//     await db.question.create({
 //       data: {
-//         text: "Which country is known as the Land of the Rising Sun?",
+//         text: "What is the capital of Japan?",
 //         answers: {
 //           createMany: {
 //             data: [
-//               { text: "Japan", isCorrect: true },
-//               { text: "China", isCorrect: false },
-//               { text: "Korea", isCorrect: false },
-//               { text: "Vietnam", isCorrect: false },
+//               { text: "Beijing", isCorrect: false },
+//               { text: "Seoul", isCorrect: false },
+//               { text: "Tokyo", isCorrect: true },
+//               { text: "Bangkok", isCorrect: false },
 //             ],
 //           },
 //         },
@@ -149,14 +149,93 @@ export const getLeaderboard = async () => {
 //       },
 //     });
 
-//     // Get the question ID
-//     const questionId = question.id;
+//     // Create the second question with answers
+//     await db.question.create({
+//       data: {
+//         text: "Which gas is most abundant in Earth's atmosphere?",
+//         answers: {
+//           createMany: {
+//             data: [
+//               { text: "Oxygen", isCorrect: false },
+//               { text: "Carbon Dioxide", isCorrect: false },
+//               { text: "Nitrogen", isCorrect: true },
+//               { text: "Methane", isCorrect: false },
+//             ],
+//           },
+//         },
+//       },
+//       include: {
+//         answers: true,
+//       },
+//     });
 
-//     console.log("Question created with ID:", questionId);
+//     // Create the third question with answers
+//     await db.question.create({
+//       data: {
+//         text: "Who developed the theory of relativity?",
+//         answers: {
+//           createMany: {
+//             data: [
+//               { text: "Isaac Newton", isCorrect: false },
+//               { text: "Albert Einstein", isCorrect: true },
+//               { text: "Stephen Hawking", isCorrect: false },
+//               { text: "Galileo Galilei", isCorrect: false },
+//             ],
+//           },
+//         },
+//       },
+//       include: {
+//         answers: true,
+//       },
+//     });
+
+//     // Create the fourth question with answers
+//     await db.question.create({
+//       data: {
+//         text: "What is the chemical symbol for gold?",
+//         answers: {
+//           createMany: {
+//             data: [
+//               { text: "Au", isCorrect: true },
+//               { text: "Ag", isCorrect: false },
+//               { text: "Fe", isCorrect: false },
+//               { text: "Cu", isCorrect: false },
+//             ],
+//           },
+//         },
+//       },
+//       include: {
+//         answers: true,
+//       },
+//     });
+
+//     // Create the fifth question with answers
+//     await db.question.create({
+//       data: {
+//         text: "Which animal is known as the 'King of the Jungle'?",
+//         answers: {
+//           createMany: {
+//             data: [
+//               { text: "Lion", isCorrect: true },
+//               { text: "Tiger", isCorrect: false },
+//               { text: "Leopard", isCorrect: false },
+//               { text: "Cheetah", isCorrect: false },
+//             ],
+//           },
+//         },
+//       },
+//       include: {
+//         answers: true,
+//       },
+//     });
+
+//     console.log("Questions and answers created successfully.");
 //   } catch (error) {
-//     console.error("Error creating question:", error);
+//     console.error("Error creating questions:", error);
 //   }
 // };
+
+
 
 export const getAllQuestionsWithAnswers = async () => {
   try {
