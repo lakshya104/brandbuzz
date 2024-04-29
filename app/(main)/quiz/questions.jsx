@@ -57,7 +57,7 @@ const Questions = ({ ques, inc, dec, id }) => {
                   <Dialog>
                     <DialogTrigger asChild>
                       {loadingBtn ? (
-                        <Skeleton className="h-[35px] bg-slate-200 rounded-none mt-2 w-[300px]" />
+                        <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
                       ) : (
                         <Button
                           disabled={loading || answeredQuestions[index]}
@@ -103,7 +103,7 @@ const Questions = ({ ques, inc, dec, id }) => {
               </li>
             ))}
             {answeredQuestions[index] && (
-              <p className="text-xs text-red-500">
+              <p className="text-xs text-red-500 ml-4">
                 * This question has been answered by you.
               </p>
             )}

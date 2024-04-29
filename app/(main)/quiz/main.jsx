@@ -41,7 +41,7 @@ const Main = ({ email, name, ques, id }) => {
                 </p>
                 <div className="flex items-center py-2">
                   {!points ? (
-                    <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
+                    <Skeleton className="h-[20px] bg-slate-200 rounded-none w-[200px]" />
                   ) : (
                     <span className="text-xs text-muted-foreground">
                       {" "}
