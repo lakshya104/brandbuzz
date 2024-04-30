@@ -5,13 +5,13 @@ import { getUserPoints } from "@/actions/redeem";
 
 const List = ({ rewards, userEmail, point }) => {
   const [points, setPoints] = useState(point);
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     const fetchPoints = async () => {
       const userPoints = await getUserPoints(userEmail);
       setPoints(userPoints);
-      if (points > 25) {
+      if (points > 24) {
         setDisabled(false);
       } else {
         setDisabled(true);

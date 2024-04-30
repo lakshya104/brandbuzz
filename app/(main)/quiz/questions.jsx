@@ -63,10 +63,7 @@ const Questions = ({ ques, inc, dec, id }) => {
                         <Button
                           disabled={loading || answeredQuestions[index]}
                           onClick={() => {
-                            setLoading(true);
-                            // setTimeout(() => {
-                            //   setLoading(false);
-                            // }, 10000);
+                            setLoading(true)
                             if (answer.isCorrect) {
                               inc();
                             } else {

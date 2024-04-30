@@ -245,7 +245,7 @@ export const getAllQuestionsWithAnswers = async () => {
       },
     });
 
-    console.log("Questions with answers:", questionsWithAnswers);
+    // console.log("Questions with answers:", questionsWithAnswers);
 
     return questionsWithAnswers;
   } catch (error) {
@@ -283,6 +283,16 @@ export const hasUserAnsweredQuestion = async (userId, questionId) => {
     return !!userAnswer;
   } catch (error) {
     console.error("Error checking user answer:", error);
+    throw error;
+  }
+};
+
+export const getAllFeedItems = async () => {
+  try {
+    const feedItems = await db.feedItem.findMany();
+    return feedItems;
+  } catch (error) {
+    console.error('Error fetching feed items:', error);
     throw error;
   }
 };

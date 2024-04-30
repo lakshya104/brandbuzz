@@ -17,7 +17,7 @@ const Main = ({ email, name, ques, id }) => {
       setPoints(userPoints);
     };
     fetchUserPoints();
-  }, [email]);
+  }, [email, refetch]);
 
   const pointIncrement = () => {
     pointIncrease();

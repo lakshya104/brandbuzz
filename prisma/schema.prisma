@@ -21,6 +21,12 @@ model User {
   accounts          Account[]
   redeemedRewards   RedeemedReward[]
   answeredQuestions UserAnswer[]
+  role              Role             @default(USER)
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 model Account {
@@ -87,4 +93,22 @@ model UserAnswer {
   question Question @relation(fields: [questionId], references: [id])
 
   @@unique([userId, questionId], name: "unique_user_question_answer")
+}
+
+model FeedItem {
+  id          String   @id @default(cuid())
+  type        FeedType
+  title       String
+  content     String?
+  imageUrl    String?
+  videoUrl    String?
+  description String?
+  link        String?
+  createdAt   DateTime @default(now())
+}
+
+enum FeedType {
+  BLOG_POST
+  IMAGE
+  VIDEO
 }
