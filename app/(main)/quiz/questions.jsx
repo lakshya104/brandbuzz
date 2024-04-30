@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Ban } from "lucide-react";
@@ -6,6 +7,10 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { createUserAnswer, hasUserAnsweredQuestion } from "@/actions/redeem";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import {
+  pointDecrease,
+  pointIncrease,
+} from "@/actions/redeem";
 
 const Questions = ({ ques, inc, dec, id }) => {
   const [loading, setLoading] = useState(true);

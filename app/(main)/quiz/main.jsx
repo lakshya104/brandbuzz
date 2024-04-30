@@ -1,36 +1,17 @@
-"use client";
-
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { StickyWrapper } from "@/components/sticky-wrapper";
-import { useEffect, useState } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import Questions from "./questions";
-import {
-  // getUserPoints,
-  pointDecrease,
-  pointIncrease,
-} from "@/actions/redeem";
+import { pointDecrease, pointIncrease } from "@/actions/redeem";
 
-const Main = ({ email, name, ques, id }) => {
-  // const [points, setPoints] = useState("");
-  // const [refetch, setRefetch] = useState(false);
-
-  // useEffect(() => {
-  //   const fetchUserPoints = async () => {
-  //     const userPoints = await getUserPoints(email);
-  //     setPoints(userPoints);
-  //   };
-  //   fetchUserPoints();
-  // }, [email, refetch]);
-
-  const pointIncrement = () => {
-    pointIncrease();
-    // setRefetch((prev) => !prev);
+const Main = async ({ email, name, ques, id }) => {
+  const pointIncrement = async () => {
+    "use server"
+     pointIncrease();
   };
 
-  const pointDecrement = () => {
-    pointDecrease();
-    // setRefetch((prev) => !prev);
+  const pointDecrement = async () => {
+    "use server"
+    await pointDecrease();
   };
 
   return (
@@ -50,15 +31,7 @@ const Main = ({ email, name, ques, id }) => {
                 <p className="text-sm">
                   Email: <span className="font-semibold">{email}</span>
                 </p>
-                <div className="flex items-center py-2">
-                  {/* {!points ? (
-                    <Skeleton className="h-[20px] bg-slate-200 rounded-none w-[200px]" />
-                  ) : (
-                    <span className="text-xs text-muted-foreground">
-                      Your Total Points are <strong>{points}</strong>
-                    </span>
-                  )} */}
-                </div>
+                <div className="flex items-center py-2"></div>
               </div>
             </div>
           </div>
@@ -84,15 +57,7 @@ const Main = ({ email, name, ques, id }) => {
             <p className="text-sm">
               Email: <span className="font-semibold">{email}</span>
             </p>
-            <div className="flex items-center py-2">
-              {/* {!points ? (
-                <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
-              ) : (
-                <span className="text-xs text-muted-foreground">
-                  Your Total Points are <strong>{points}</strong>
-                </span>
-              )} */}
-            </div>
+            <div className="flex items-center py-2"></div>
           </div>
         </div>
       </StickyWrapper>
