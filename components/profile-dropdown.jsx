@@ -10,6 +10,8 @@ import Image from "next/image";
 import { auth, signOut } from "@/auth";
 import { getUserPoints } from "@/actions/redeem";
 import { Button } from "./ui/button";
+import { ProgressBarLink } from "./progress-bar";
+import { ArrowBigRightDashIcon } from "lucide-react";
 
 const ProfileDropdown = async () => {
   const session = await auth();
@@ -39,18 +41,28 @@ const ProfileDropdown = async () => {
           </p>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <span className="text-xs text-muted-foreground">
-            Your Total Points are: {points}
-          </span>
+          <ProgressBarLink href={"/leaderboard"}>
+            <span className="text-xs flex justify-center items-center transition font-semibold hover:text-sky-700 hover:underline">
+              Check Your Points{" "}
+              <span>
+                <ArrowBigRightDashIcon />
+              </span>
+            </span>
+          </ProgressBarLink>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <form className="w-full"
+          <form
+            className="w-full"
             action={async () => {
               "use server";
               await signOut();
             }}
           >
-            <Button variant="dangerOutline" className="w-full bg-slate-100" type="submit">
+            <Button
+              variant="dangerOutline"
+              className="w-full bg-slate-100"
+              type="submit"
+            >
               Sign Out
             </Button>
           </form>
@@ -61,5 +73,3 @@ const ProfileDropdown = async () => {
 };
 
 export default ProfileDropdown;
-
-

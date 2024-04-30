@@ -6,6 +6,7 @@ import VideoPlayer from "@/components/video-player";
 import { mediaJSON } from "@/lib/demoData";
 import { getAllFeedItems, getUserPoints } from "@/actions/redeem";
 import Image from "next/image";
+import UserCard from "@/components/user-card";
 
 const Feed = async () => {
   const session = await auth();
@@ -57,8 +58,8 @@ const Feed = async () => {
                 </>
               )}
               {item.content && (
-                <div className="  p-1 lg:p-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
-                  <p className="lg:px-8 lg:py-6 p-2 my-2 text-sm text-center">
+                <div className=" w-[360px] p-1 lg:p-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
+                  <p className="lg:p-6 p-2 my-2 text-sm text-center">
                     {item.content}
                   </p>
                 </div>
@@ -68,24 +69,7 @@ const Feed = async () => {
         </div>
       </FeedWrapper>
       <StickyWrapper>
-        <div className="flex justify-between items-center space-x-4 shadow-2xl py-6 px-8">
-          <div className="space-y-1">
-            <h4 className="text-sm text-sky-700 font-semibold">
-              Welcome to Buzz
-            </h4>
-            <p className="text-sm">
-              Name: <span className="font-semibold">{session.user.name}</span>
-            </p>
-            <p className="text-sm">
-              Email: <span className="font-semibold">{session.user.email}</span>
-            </p>
-            <div className="flex items-center py-2">
-              <span className="text-xs text-muted-foreground">
-                Your Total Points are: {points}
-              </span>
-            </div>
-          </div>
-        </div>
+       <UserCard/>
       </StickyWrapper>
       {console.log(session)}
     </div>
