@@ -8,8 +8,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const Questions = ({ ques, inc, dec, id }) => {
   const [loading, setLoading] = useState(true);
-  const [loadingDelay, setLoadingDelay] = useState(false);
-
   const [loadingBtn, setLoadingBtn] = useState(true);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
@@ -29,43 +27,24 @@ const Questions = ({ ques, inc, dec, id }) => {
     [id]
   );
 
-  const prevAnsweredQuestions = useRef([]);
-
   useEffect(() => {
     const fetchAnsweredQuestions = async () => {
       const answeredQuestions = await Promise.all(
         ques.map((question) => handleIsAnswered(question.id))
       );
       setAnsweredQuestions(answeredQuestions);
-      setLoading(false);                 
+      setLoading(false);
     };
 
-    if (answeredQuestions !== prevAnsweredQuestions.current) {
-      fetchAnsweredQuestions();
-      prevAnsweredQuestions.current = answeredQuestions;
-    }
+    fetchAnsweredQuestions();
     setLoadingBtn(false);
-  }, [ques, handleIsAnswered, answeredQuestions]);
-
-  // useEffect(() => {
-  //   const fetchAnsweredQuestions = async () => {
-  //     const answeredQuestions = await Promise.all(
-  //       ques.map((question) => handleIsAnswered(question.id))
-  //     );
-  //     setAnsweredQuestions(answeredQuestions);
-  //   };
-
-  //   fetchAnsweredQuestions();
-  //   setLoadingBtn(false);
-  //   setLoading(false);
-  // }, [ques, loading, handleIsAnswered]);
+  }, [ques, loading, handleIsAnswered]);
 
   return (
     <div className="flex items-start flex-col justify-start">
       {ques.map((question, index) => (
         <div
           key={question.id}
-          onClick={() => handleIsAnswered(question.id)}
           className="lg:border-r w-full lg:pr-6"
         >
           <h2 className="font-semibold lg:text-xl text-sky-800 mt-2 lg:mt-3.5 ml-5">
@@ -81,11 +60,11 @@ const Questions = ({ ques, inc, dec, id }) => {
                         <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
                       ) : (
                         <Button
-                          disabled={loading || loadingDelay || answeredQuestions[index]}
+                          disabled={loading || answeredQuestions[index]}
                           onClick={() => {
-                            setLoadingDelay(true);
+                            setLoading(true);
                             setTimeout(() => {
-                              setLoadingDelay(false);
+                              setLoading(false);
                             }, 3000);
                             if (answer.isCorrect) {
                               inc();
