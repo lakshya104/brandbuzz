@@ -58,6 +58,7 @@ export function ProgressBarLink({ href, children, ...rest }) {
   return (
     <Link
       href={href}
+      prefetch={true}
       onClick={(e) => {
         e.preventDefault();
         progress.start();

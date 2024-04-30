@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Ban } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { createUserAnswer, hasUserAnsweredQuestion } from "@/actions/redeem";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Questions = ({ ques, inc, dec, id }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadingDelay, setLoadingDelay] = useState(false);
+
   const [loadingBtn, setLoadingBtn] = useState(true);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
@@ -27,17 +29,36 @@ const Questions = ({ ques, inc, dec, id }) => {
     [id]
   );
 
+  const prevAnsweredQuestions = useRef([]);
+
   useEffect(() => {
-    setLoadingBtn(false);
     const fetchAnsweredQuestions = async () => {
       const answeredQuestions = await Promise.all(
         ques.map((question) => handleIsAnswered(question.id))
       );
       setAnsweredQuestions(answeredQuestions);
+      setLoading(false);                 
     };
 
-    fetchAnsweredQuestions();
-  }, [ques, loading, handleIsAnswered]);
+    if (answeredQuestions !== prevAnsweredQuestions.current) {
+      fetchAnsweredQuestions();
+      prevAnsweredQuestions.current = answeredQuestions;
+    }
+    setLoadingBtn(false);
+  }, [ques, handleIsAnswered, answeredQuestions]);
+
+  // useEffect(() => {
+  //   const fetchAnsweredQuestions = async () => {
+  //     const answeredQuestions = await Promise.all(
+  //       ques.map((question) => handleIsAnswered(question.id))
+  //     );
+  //     setAnsweredQuestions(answeredQuestions);
+  //   };
+
+  //   fetchAnsweredQuestions();
+  //   setLoadingBtn(false);
+  //   setLoading(false);
+  // }, [ques, loading, handleIsAnswered]);
 
   return (
     <div className="flex items-start flex-col justify-start">
@@ -60,12 +81,12 @@ const Questions = ({ ques, inc, dec, id }) => {
                         <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
                       ) : (
                         <Button
-                          disabled={loading || answeredQuestions[index]}
+                          disabled={loading || loadingDelay || answeredQuestions[index]}
                           onClick={() => {
-                            setLoading(true);
+                            setLoadingDelay(true);
                             setTimeout(() => {
-                              setLoading(false);
-                            }, 1000);
+                              setLoadingDelay(false);
+                            }, 3000);
                             if (answer.isCorrect) {
                               inc();
                             } else {
@@ -113,5 +134,5 @@ const Questions = ({ ques, inc, dec, id }) => {
     </div>
   );
 };
-
-export default Questions;
+const QuestionsComponent = React.memo(Questions);
+export default QuestionsComponent;
