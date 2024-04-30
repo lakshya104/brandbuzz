@@ -2,26 +2,33 @@
 
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { StickyWrapper } from "@/components/sticky-wrapper";
-import { getUserPoints, pointDecrease, pointIncrease } from "@/actions/redeem";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import Questions from "./questions";
+import { getUserPoints, pointDecrease, pointIncrease } from "@/actions/redeem";
 
 const Main = ({ email, name, ques, id }) => {
   const [points, setPoints] = useState("");
   const [refetch, setRefetch] = useState(false);
 
+  useEffect(() => {
+    const fetchUserPoints = async () => {
+      const userPoints = await getUserPoints(email);
+      setPoints(userPoints);
+    };
+    fetchUserPoints();
+  }, [email]);
+
   const pointIncrement = () => {
     pointIncrease();
     setRefetch((prev) => !prev);
   };
+
   const pointDecrement = () => {
     pointDecrease();
     setRefetch((prev) => !prev);
   };
-  useEffect(() => {
-    setPoints(getUserPoints(email));
-  }, [email, refetch]);
+
   return (
     <>
       <FeedWrapper>
@@ -44,7 +51,6 @@ const Main = ({ email, name, ques, id }) => {
                     <Skeleton className="h-[20px] bg-slate-200 rounded-none w-[200px]" />
                   ) : (
                     <span className="text-xs text-muted-foreground">
-                      {" "}
                       Your Total Points are <strong>{points}</strong>
                     </span>
                   )}
@@ -74,7 +80,6 @@ const Main = ({ email, name, ques, id }) => {
                 <Skeleton className="h-[24px] bg-slate-200 rounded-none w-[200px]" />
               ) : (
                 <span className="text-xs text-muted-foreground">
-                  {" "}
                   Your Total Points are <strong>{points}</strong>
                 </span>
               )}
@@ -87,3 +92,4 @@ const Main = ({ email, name, ques, id }) => {
 };
 
 export default Main;
+
