@@ -8,14 +8,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { auth, signOut } from "@/auth";
-import { getUserPoints } from "@/actions/redeem";
 import { Button } from "./ui/button";
 import { ProgressBarLink } from "./progress-bar";
 import { ArrowBigRightDashIcon } from "lucide-react";
 
 const ProfileDropdown = async () => {
   const session = await auth();
-  const points = await getUserPoints(session.user.email);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="w-[44px] rounded-full h-[44px] flex justify-center items-center">
@@ -42,8 +40,8 @@ const ProfileDropdown = async () => {
         </DropdownMenuItem>
         <DropdownMenuItem>
           <ProgressBarLink href={"/leaderboard"}>
-            <span className="text-xs flex justify-center items-center transition font-semibold hover:text-sky-700 hover:underline">
-              Check Your Points{" "}
+          <span className="text-xs flex justify-center items-center transition font-medium  hover:text-sky-700 hover:underline">
+              Click here to check Your Points{" "}
               <span>
                 <ArrowBigRightDashIcon />
               </span>

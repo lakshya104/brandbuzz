@@ -4,7 +4,7 @@ import Questions from "./questions";
 import { pointDecrease, pointIncrease } from "@/actions/redeem";
 import UserCard from "@/components/user-card";
 
-const Main = async ({ email, name, ques, id }) => {
+const Main = async ({ ques, id }) => {
   const pointIncrement = async () => {
     "use server"
      pointIncrease();

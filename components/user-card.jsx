@@ -17,8 +17,8 @@ const UserCard = async () => {
         </p>
         <div className="flex items-center py-2">
           <ProgressBarLink href={"/leaderboard"}>
-            <span className="text-xs flex justify-center items-center transition font-semibold hover:text-sky-700 hover:underline">
-              Check Your Points{" "}
+            <span className="text-xs flex justify-center items-center transition font-medium  hover:text-sky-700 hover:underline">
+              Click here to check Your Points{" "}
               <span>
                 <ArrowBigRightDashIcon />
               </span>

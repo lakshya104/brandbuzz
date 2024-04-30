@@ -64,13 +64,13 @@ const Questions = ({ ques, inc, dec, id }) => {
                         <Button
                           disabled={loading || answeredQuestions[index]}
                           onClick={() => {
+                            createUserAnswer(id, answer.questionId);
                             setLoading(true)
                             if (answer.isCorrect) {
                               inc();
                             } else {
                               dec();
                             }
-                            createUserAnswer(id, answer.questionId);
                           }}
                           className="my-1 text-[12px] lg:text-[15px]"
                         >
