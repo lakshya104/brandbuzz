@@ -30,7 +30,10 @@ const Questions = ({ ques, inc, dec, id }) => {
         ques.map((question) => handleIsAnswered(question.id))
       );
       setAnsweredQuestions(answeredQuestions);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      console.log(answeredQuestions, "answeredQuestions");
     };
 
     fetchAnsweredQuestions();
@@ -61,9 +64,9 @@ const Questions = ({ ques, inc, dec, id }) => {
                           disabled={loading || answeredQuestions[index]}
                           onClick={() => {
                             setLoading(true);
-                            setTimeout(() => {
-                              setLoading(false);
-                            }, 10000);
+                            // setTimeout(() => {
+                            //   setLoading(false);
+                            // }, 10000);
                             if (answer.isCorrect) {
                               inc();
                             } else {
