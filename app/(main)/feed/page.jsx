@@ -57,7 +57,7 @@ const Feed = async () => {
                 </>
               )}
               {item.content && (
-                <div className=" w-[360px] p-1 lg:p-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
+                <div className="  p-1 lg:p-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
                   <p className="lg:px-8 lg:py-6 p-2 my-2 text-sm text-center">
                     {item.content}
                   </p>
