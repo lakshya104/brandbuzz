@@ -28,12 +28,12 @@ export const Header = async () => {
           </LoginButton>
         ) : (
           <>
-            <div className="hidden lg:block">
+            <div className="block">
               <ProfileDropdown />
             </div>
-            <div className="lg:hidden block">
+            {/* <div className="lg:hidden block">
               <SignOutButton />
-            </div>
+            </div> */}
           </>
         )}
       </div>

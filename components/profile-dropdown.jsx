@@ -40,7 +40,7 @@ const ProfileDropdown = async () => {
         </DropdownMenuItem>
         <DropdownMenuItem>
           <ProgressBarLink href={"/leaderboard"}>
-          <span className="text-xs flex justify-center items-center transition font-medium  hover:text-sky-700 hover:underline">
+            <span className="text-xs flex justify-center items-center underline lg:no-underline transition font-medium  lg:hover:text-sky-700 lg:hover:underline">
               Click here to check Your Points{" "}
               <span>
                 <ArrowBigRightDashIcon />
