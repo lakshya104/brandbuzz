@@ -1,18 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Ban } from "lucide-react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { createUserAnswer, hasUserAnsweredQuestion } from "@/actions/redeem";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 const Questions = ({ ques, inc, dec, id }) => {
   const [loading, setLoading] = useState(true);
   const [loadingBtn, setLoadingBtn] = useState(true);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
-  const handleIsAnswered = useCallback(
-    async (qid) => {
+  useEffect(() => {
+    const handleIsAnswered = async (qid) => {
       try {
         const answered = await hasUserAnsweredQuestion(id, qid);
         return answered;
@@ -23,11 +24,7 @@ const Questions = ({ ques, inc, dec, id }) => {
         );
         return false;
       }
-    },
-    [id]
-  );
-
-  useEffect(() => {
+    };
     const fetchAnsweredQuestions = async () => {
       const answeredQuestions = await Promise.all(
         ques.map((question) => handleIsAnswered(question.id))
@@ -38,16 +35,17 @@ const Questions = ({ ques, inc, dec, id }) => {
 
     fetchAnsweredQuestions();
     setLoadingBtn(false);
-  }, [ques, loading, handleIsAnswered]);
+  }, [ques, loading, id]);
 
   return (
     <div className="flex items-start flex-col justify-start">
       {ques.map((question, index) => (
-        <div
-          key={question.id}
-          className="lg:border-r w-full lg:pr-6"
-        >
-          <h2 className="font-semibold lg:text-xl text-sky-800 mt-2 lg:mt-3.5 ml-5">
+        <div key={question.id} className="lg:border-r w-full lg:pr-6">
+          <h2
+            className={cn(
+              "font-semibold lg:text-xl text-sky-800 mt-2 lg:mt-3.5 ml-5"
+            )}
+          >
             {question.text}
           </h2>
           <ul className="mb-5">
@@ -65,7 +63,7 @@ const Questions = ({ ques, inc, dec, id }) => {
                             setLoading(true);
                             setTimeout(() => {
                               setLoading(false);
-                            }, 3000);
+                            }, 10000);
                             if (answer.isCorrect) {
                               inc();
                             } else {
