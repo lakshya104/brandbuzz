@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, Loader, LoaderCircle } from "lucide-react";
 import { Ban } from "lucide-react";
 import React, { useEffect, useState, useTransition } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -77,6 +77,9 @@ const Questions = ({ ques, inc, dec, id }) => {
                           className="my-1 text-[12px] lg:text-[15px]"
                         >
                           {answer.text}
+                          {isPending && (
+                            <LoaderCircle className="animate-spin ml-2 h-5 w-5 text-slate-600" />
+                          )}
                         </Button>
                       )}
                     </DialogTrigger>
