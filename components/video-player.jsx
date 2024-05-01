@@ -11,8 +11,8 @@ const VideoPlayer = ({ title, videosrc, description }) => {
     }
   }, []);
   return (
-    <>
-      <h1 className="text-xl my-2 text-sky-900 font-medium">{title}</h1>
+    <div className="max-w-lg flex justify-center items-center flex-col mx-auto my-8 p-5">
+      <h2 className="lg:text-2xl text-xl font-bold text-gray-800 mb-4">{title}</h2>
       {!hasWindow ? (
         <Skeleton className="h-[212px] bg-slate-300 rounded-none w-[360px]" />
       ) : (
@@ -30,10 +30,10 @@ const VideoPlayer = ({ title, videosrc, description }) => {
         />
       )}
       <source src={videosrc} type="video/mp4" />
-      <p className="lg:px-12 lg:py-4 p-2 my-2 text-sm text-center">
+      <p className="lg:px-12 lg:py-4 p-2 my-2 text-justify text-gray-600 text-base">
         {description}
       </p>
-    </>
+    </div>
   );
 };
 
