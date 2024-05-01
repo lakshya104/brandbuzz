@@ -299,7 +299,7 @@ export const getAllFeedItems = async () => {
 
 export const fetchFeedItemById = async (itemId) => {
   try {
-    const feedItem = await prisma.feedItem.findUnique({
+    const feedItem = await db.feedItem.findUnique({
       where: {
         id: itemId,
       },
