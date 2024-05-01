@@ -30,7 +30,7 @@ const Feed = async () => {
           {feedItems.map((item) => (
             <>
               <h2
-                className="text-xl mb-2 mt-3 text-sky-900 font-medium"
+                className="text-xl my-4 text-sky-900 font-medium"
                 key={item.id}
               >
                 {item.title}
@@ -58,7 +58,7 @@ const Feed = async () => {
                 </>
               )}
               {item.content && (
-                <div className=" w-[360px] p-1 lg:p-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
+                <div className=" w-[360px] lg:w-[500px] p-1 lg:p-3 mb-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
                   <p className="lg:p-6 p-2 my-2 text-sm text-center">
                     {item.content}
                   </p>
