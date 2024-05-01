@@ -296,3 +296,21 @@ export const getAllFeedItems = async () => {
     throw error;
   }
 };
+
+export const fetchFeedItemById = async (itemId) => {
+  try {
+    const feedItem = await prisma.feedItem.findUnique({
+      where: {
+        id: itemId,
+      },
+      include: {
+        questions: true, 
+      },
+    });
+
+    return feedItem;
+  } catch (error) {
+    console.error('Error fetching feed item:', error);
+    throw error;
+  }
+};
