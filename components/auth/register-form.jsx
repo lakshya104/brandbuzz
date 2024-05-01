@@ -18,8 +18,6 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { register } from "@/actions/register";
-import { ProgressBarLink } from "../progress-bar";
-import { ArrowLeft } from "lucide-react";
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();

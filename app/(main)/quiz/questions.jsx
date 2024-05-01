@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { Ban } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { createUserAnswer, hasUserAnsweredQuestion } from "@/actions/redeem";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -12,6 +12,7 @@ const Questions = ({ ques, inc, dec, id }) => {
   const [loading, setLoading] = useState(true);
   const [loadingBtn, setLoadingBtn] = useState(true);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     const handleIsAnswered = async (qid) => {
@@ -26,19 +27,19 @@ const Questions = ({ ques, inc, dec, id }) => {
         return false;
       }
     };
+
     const fetchAnsweredQuestions = async () => {
       const answeredQuestions = await Promise.all(
         ques.map((question) => handleIsAnswered(question.id))
       );
       setAnsweredQuestions(answeredQuestions);
-      setLoading(false)
-      // setTimeout(() => {
-      //   setLoading(false);
-      // }, 2000);
+      setLoading(false);
       console.log(answeredQuestions, "answeredQuestions");
     };
 
-    fetchAnsweredQuestions();
+    startTransition(() => {
+      fetchAnsweredQuestions();
+    });
     setLoadingBtn(false);
   }, [ques, loading, id]);
 
@@ -63,10 +64,10 @@ const Questions = ({ ques, inc, dec, id }) => {
                         <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
                       ) : (
                         <Button
-                          disabled={loading || answeredQuestions[index]}
+                          disabled={isPending || answeredQuestions[index]}
                           onClick={() => {
                             createUserAnswer(id, answer.questionId);
-                            setLoading(true)
+                            setLoading(true);
                             if (answer.isCorrect) {
                               inc();
                             } else {
