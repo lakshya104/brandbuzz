@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Check, Loader, LoaderCircle } from "lucide-react";
+import { Check, LoaderCircle } from "lucide-react";
 import { Ban } from "lucide-react";
 import React, { useEffect, useState, useTransition } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -13,6 +13,16 @@ const Questions = ({ ques, inc, dec, id }) => {
   const [loadingBtn, setLoadingBtn] = useState(true);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [isPending, startTransition] = useTransition();
+
+  const handleClick = (id, answer) => {
+    setLoading(true);
+    createUserAnswer(id, answer.questionId);
+    if (answer.isCorrect) {
+      inc();
+    } else {
+      dec();
+    }
+  }
 
   useEffect(() => {
     const handleIsAnswered = async (qid) => {
@@ -34,7 +44,6 @@ const Questions = ({ ques, inc, dec, id }) => {
       );
       setAnsweredQuestions(answeredQuestions);
       setLoading(false);
-      console.log(answeredQuestions, "answeredQuestions");
     };
 
     startTransition(() => {
@@ -65,15 +74,18 @@ const Questions = ({ ques, inc, dec, id }) => {
                       ) : (
                         <Button
                           disabled={isPending || answeredQuestions[index]}
-                          onClick={() => {
-                            createUserAnswer(id, answer.questionId);
-                            setLoading(true);
-                            if (answer.isCorrect) {
-                              inc();
-                            } else {
-                              dec();
-                            }
-                          }}
+                          onClick={()=>handleClick(id, answer)
+                            
+                          //   () => {
+                          //   setLoading(true);
+                          //   createUserAnswer(id, answer.questionId);
+                          //   if (answer.isCorrect) {
+                          //     inc();
+                          //   } else {
+                          //     dec();
+                          //   }
+                          // }
+                        }
                           className="my-1 text-[12px] lg:text-[15px]"
                         >
                           {answer.text}

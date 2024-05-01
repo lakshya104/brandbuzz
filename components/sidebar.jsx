@@ -5,7 +5,6 @@ import { SidebarItem } from "./sidebar-item";
 import { Button } from "./ui/button";
 import { signOut } from "@/auth";
 import SignOutButton from "./auth/signout-button";
-import { ProgressBarLink } from "./progress-bar";
 
 export const Sidebar = ({ className }) => {
   return (
@@ -15,14 +14,12 @@ export const Sidebar = ({ className }) => {
         className
       )}
     >
-      <ProgressBarLink href="/" className="hidden lg:block">
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
           <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
             Buzz
           </h1>
         </div>
-      </ProgressBarLink>
       <div className="lg:hidden pt-8 pl-4 pb-7 flex items-center gap-x-3">
         <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
         <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
@@ -31,7 +28,7 @@ export const Sidebar = ({ className }) => {
       </div>
       <div className="flex flex-col gap-y-2 flex-1">
         <SidebarItem label="Feed" href="/feed" iconSrc="/feed.svg" />
-        <SidebarItem label="Quiz" href="/quiz" iconSrc="/quiz.svg" />
+        {/* <SidebarItem label="Quiz" href="/quiz" iconSrc="/quiz.svg" /> */}
         <SidebarItem
           label="Leaderboard"
           href="/leaderboard"
