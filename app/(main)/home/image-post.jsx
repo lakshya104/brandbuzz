@@ -1,4 +1,5 @@
 import { ProgressBarLink } from "@/components/progress-bar";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const ImagePost = ({ item }) => {
@@ -17,11 +18,14 @@ const ImagePost = ({ item }) => {
       <p className="lg:px-12 lg:py-4 p-2 my-2 text-justify text-gray-600 text-base">
         {item.description}
       </p>
-      <ProgressBarLink
-        href={`blog/${item.id}`}
-        className="block bg-sky-600 hover:bg-sky-800 transition text-white font-bold py-2 px-4 rounded mb-4 mx-auto w-[50%] text-center"
-      >
-        Learn More
+      <ProgressBarLink href={`blog/${item.id}`}>
+        <Button
+          variant="super"
+          className="block text-white font-bold py-2 px-4 rounded mb-4 mx-auto w-[50%] text-center"
+        >
+          {" "}
+          Read More
+        </Button>
       </ProgressBarLink>
     </div>
   );

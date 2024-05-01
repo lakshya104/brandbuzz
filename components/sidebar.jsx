@@ -14,12 +14,12 @@ export const Sidebar = ({ className }) => {
         className
       )}
     >
-      <div className="lg:hidden pt-8 pl-4 pb-7 flex items-center gap-x-3">
-        <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
-        <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
-          Buzz
-        </h1>
-      </div>
+        <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
+          <Image src="/logo.svg" priority height={70} width={70} alt="logo" />
+          <h1 className="text-2xl font-extrabold text-sky-600 tracking-wide">
+            Buzz
+          </h1>
+        </div>
       <div className="flex flex-col gap-y-2 flex-1">
         <SidebarItem label="Home" href="/home" iconSrc="/feed.svg" />
         {/* <SidebarItem label="Quiz" href="/quiz" iconSrc="/quiz.svg" /> */}

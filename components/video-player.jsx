@@ -11,7 +11,7 @@ const VideoPlayer = ({ title, videosrc, description }) => {
     }
   }, []);
   return (
-    <div className="max-w-lg flex justify-center items-center flex-col mx-auto my-8 p-5">
+    <div className="max-w-lg flex justify-center items-center flex-col mx-auto my-8 lg:p-5">
       <h2 className="lg:text-2xl text-xl font-bold text-gray-800 mb-4">{title}</h2>
       {!hasWindow ? (
         <Skeleton className="h-[212px] bg-slate-300 rounded-none w-[360px]" />
