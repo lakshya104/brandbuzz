@@ -31,9 +31,10 @@ const Questions = ({ ques, inc, dec, id }) => {
         ques.map((question) => handleIsAnswered(question.id))
       );
       setAnsweredQuestions(answeredQuestions);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+      setLoading(false)
+      // setTimeout(() => {
+      //   setLoading(false);
+      // }, 2000);
       console.log(answeredQuestions, "answeredQuestions");
     };
 
