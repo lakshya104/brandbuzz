@@ -1,16 +1,19 @@
+import { ProgressBarLink } from "@/components/progress-bar";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
+import { BackHeader } from "../../backHeader";
 
 const ImageComponent = ({ data }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="w-full max-w-screen-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+     <BackHeader title={"Post"}/>
       <Image
-        className="w-full h-96 object-cover object-center"
+        className="w-full  object-cover object-center"
         src={data.imageUrl}
         alt={data.title}
         height={500}
-        width={500}
+        width={300}
       />
       <div className="p-4">
         <h2 className="text-2xl font-bold">{data.title}</h2>
@@ -26,9 +29,9 @@ const ImageComponent = ({ data }) => {
           </ul>
         </div>
         <div className="mt-4 flex justify-center items-center">
-          <Button variant="super">
-            Try Your Luck
-          </Button>
+          <ProgressBarLink href={`/quiz/${data.id}`}>
+            <Button variant="super">Try Your Luck</Button>
+          </ProgressBarLink>
         </div>
       </div>
     </div>

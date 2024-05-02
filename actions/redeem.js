@@ -254,6 +254,21 @@ export const getAllQuestionsWithAnswers = async () => {
   }
 };
 
+export const getAnswersByQuestionId = async (questionId) => {
+  try {
+    const answers = await prisma.answer.findMany({
+      where: {
+        questionId: questionId,
+      },
+    });
+
+    return answers;
+  } catch (error) {
+    console.error("Error fetching answers by question ID:", error);
+    throw error;
+  }
+};
+
 export const createUserAnswer = async (userId, questionId) => {
   try {
     const userAnswer = await db.userAnswer.create({
