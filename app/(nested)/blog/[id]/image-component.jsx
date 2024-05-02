@@ -18,16 +18,7 @@ const ImageComponent = ({ data }) => {
       <div className="p-4">
         <h2 className="text-2xl font-bold">{data.title}</h2>
         <p className="mt-2 text-gray-600">{data.description}</p>
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold">Questions:</h3>
-          <ul className="list-disc pl-5">
-            {data.questions.map((question) => (
-              <li key={question.id} className="text-gray-600">
-                {question.text}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <p className="mt-2 text-gray-600">{data.description}</p>
         <div className="mt-4 flex justify-center items-center">
           <ProgressBarLink href={`/quiz/${data.id}`}>
             <Button variant="super">Try Your Luck</Button>

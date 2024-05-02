@@ -24,11 +24,12 @@ const Feed = async () => {
                   title={item.title}
                   videosrc={item.videoUrl}
                   description={item.description}
+                  id={item.id}
                 />
               )}
               {item.type === "IMAGE" && <ImagePost item={item} />}
               {item.type === "BLOG_POST" && (
-                <BlogPost title={item.title} content={item.content} />
+                <BlogPost title={item.title} content={item.content} id={item.id} />
               )}
             </>
           ))}

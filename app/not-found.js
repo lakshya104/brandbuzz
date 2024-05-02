@@ -1,3 +1,4 @@
+import { ProgressBarLink } from "@/components/progress-bar";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,11 +19,11 @@ export default function NotFound() {
         <p className="text-xl text-gray-100 mb-8">
           Oops! The page you are looking for is not here.
         </p>
-        <Link
+        <ProgressBarLink
           href="/home"
         >
           <Button variant="primary" className="px-8 font-black">Go Home</Button>
-        </Link>
+        </ProgressBarLink>
       </div>
     </div>
   );

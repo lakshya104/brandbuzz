@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ProgressBarLink } from "./progress-bar";
+import { Button } from "./ui/button";
 
-const VideoPlayer = ({ title, videosrc, description }) => {
+const VideoPlayer = ({ title, videosrc, description, id }) => {
   const [hasWindow, setHasWindow] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -12,7 +14,9 @@ const VideoPlayer = ({ title, videosrc, description }) => {
   }, []);
   return (
     <div className="max-w-lg flex justify-center items-center flex-col mx-auto my-8 lg:p-5">
-      <h2 className="lg:text-2xl text-xl font-bold text-gray-800 mb-4">{title}</h2>
+      <h2 className="lg:text-2xl text-xl font-bold text-gray-800 mb-4">
+        {title}
+      </h2>
       {!hasWindow ? (
         <Skeleton className="h-[212px] bg-slate-300 rounded-none w-[360px]" />
       ) : (
@@ -33,6 +37,14 @@ const VideoPlayer = ({ title, videosrc, description }) => {
       <p className="lg:px-12 lg:py-4 p-2 my-2 text-justify text-gray-600 text-base">
         {description}
       </p>
+      <ProgressBarLink href={`blog/${id}`}>
+        <Button
+          variant="super"
+          className="block text-white font-bold py-2 px-8 rounded mb-4 mx-auto text-center"
+        >
+          Read More
+        </Button>
+      </ProgressBarLink>
     </div>
   );
 };
