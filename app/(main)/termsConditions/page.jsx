@@ -3,7 +3,7 @@ import React from 'react';
 const TermsAndConditions = () => {
   return (
     <div className="w-full px-4 md:px-16 lg:px-40 py-12 bg-gray-50">
-     <h1 className="text-2xl font-bold text-center mb-2 text-sky-800">Need Help?</h1>
+     <h1 className="text-2xl font-bold text-center mb-2 text-sky-800">Terms and Conditions</h1>
       <p className="text-lg text-justify mb-6 text-gray-700">
         Welcome to our website. If you continue to browse and use this website,
         you are agreeing to comply with and be bound by the following terms and
