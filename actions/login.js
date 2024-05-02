@@ -18,7 +18,7 @@ export const login = async (values) => {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/feed",
+      redirectTo: "/home",
     });
   } catch (error) {
     if (error instanceof AuthError) {

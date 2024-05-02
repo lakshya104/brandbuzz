@@ -6,10 +6,10 @@ import { BackHeader } from "../../backHeader";
 
 const ImageComponent = ({ data }) => {
   return (
-    <div className="w-full max-w-screen-xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="lg:w-[600px] w-[320px] mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
      <BackHeader title={"Post"}/>
       <Image
-        className="w-full  object-cover object-center"
+        className="w-full h-[320px] lg:h-[600px] object-cover object-center"
         src={data.imageUrl}
         alt={data.title}
         height={500}
