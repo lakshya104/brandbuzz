@@ -256,7 +256,7 @@ export const getAllQuestionsWithAnswers = async () => {
 
 export const getAnswersByQuestionId = async (questionId) => {
   try {
-    const answers = await prisma.answer.findMany({
+    const answers = await db.answer.findMany({
       where: {
         questionId: questionId,
       },
