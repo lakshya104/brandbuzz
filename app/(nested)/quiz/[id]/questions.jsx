@@ -1,15 +1,28 @@
 "use client";
-import { createUserAnswer, getAnswersByQuestionId } from "@/actions/redeem";
+import {
+  createUserAnswer,
+  getAnswersByQuestionId,
+  hasUserAnsweredQuestion,
+} from "@/actions/redeem";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Ban, Check, LoaderCircle } from "lucide-react";
-import React, { useEffect, useState, useTransition } from "react";
+import { Ban, Check } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 const Questions = ({ ques, id, inc, dec }) => {
   const [answers, setAnswers] = useState({});
-  const [loadingBtn, setLoadingBtn] = useState(true);
-  const [isPending, startTransition] = useTransition();
+  const [answeredQuestions, setAnsweredQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const handleClick = (questionId, answer) => {
+    if (answeredQuestions.includes(questionId)) {
+      return;
+    }
+    setAnsweredQuestions([...answeredQuestions, questionId]);
+    createUserAnswer(id, answer.questionId);
+    answer.isCorrect ? inc() : dec();
+  };
 
   useEffect(() => {
     const fetchAnswers = async () => {
@@ -20,25 +33,22 @@ const Questions = ({ ques, id, inc, dec }) => {
           answersMap[question.id] = fetchedAnswers;
         }
         setAnswers(answersMap);
-        setLoadingBtn(false);
+
+        const answeredQues = await Promise.all(
+          ques.map(async (question) => {
+            const answered = await hasUserAnsweredQuestion(id, question.id);
+            return answered ? question.id : null;
+          })
+        );
+        setAnsweredQuestions(answeredQues.filter((ques) => ques !== null));
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching answers:", error);
       }
     };
 
-    // startTransition(() => {
     fetchAnswers();
-    // });
-  }, [ques]);
-
-  const handleClick = (id, answer) => {
-    // createUserAnswer(id, answer.questionId);
-    if (answer.isCorrect) {
-      inc();
-    } else {
-      dec();
-    }
-  };
+  }, [ques, id]);
 
   return (
     <div className="flex items-start flex-col justify-start">
@@ -55,20 +65,15 @@ const Questions = ({ ques, id, inc, dec }) => {
                     <div className="flex justify-start items-center">
                       <Dialog>
                         <DialogTrigger asChild>
-                          {isPending ? (
-                            <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
-                          ) : (
-                            <Button
-                              disabled={isPending}
-                              onClick={() => handleClick(id, answer)}
-                              className="my-1 text-[12px] lg:text-[15px]"
-                            >
-                              {answer.text}
-                              {/* {isPending && (
-                            <LoaderCircle className="animate-spin ml-2 h-5 w-5 text-slate-600" />
-                          )} */}
-                            </Button>
-                          )}
+                          <Button
+                            onClick={() => handleClick(question.id, answer)}
+                            disabled={
+                              answeredQuestions.includes(question.id) || loading
+                            }
+                            className="my-1 text-[12px] lg:text-[15px]"
+                          >
+                            {answer.text}
+                          </Button>
                         </DialogTrigger>
                         <DialogContent className="shadow-inner w-[300px] py-8 rounded- px-4 lg:px-12 z-50">
                           <div className="flex items-center justify-center flex-col space-y-4">
@@ -93,15 +98,19 @@ const Questions = ({ ques, id, inc, dec }) => {
                     </div>
                   </li>
                 ))}
+                {answeredQuestions.includes(question.id) && (
+                  <p className="text-xs text-red-500 ml-4">
+                    * This question has been answered by you.
+                  </p>
+                )}
               </>
             ) : (
               <>
-              <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
-              <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
-              <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
-              <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
+                <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
+                <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
+                <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
+                <Skeleton className="h-[38px] bg-sky-100 rounded-lg my-2 w-[300px]" />
               </>
-
             )}
           </ul>
         </div>

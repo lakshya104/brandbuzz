@@ -8,7 +8,7 @@ import UserCard from "@/components/user-card";
 import BlogPost from "./blog-post";
 import ImagePost from "./image-post";
 
-const Feed = async () => {
+const Home = async () => {
   const session = await auth();
   const feedItems = await getAllFeedItems();
   console.log(session);
@@ -42,4 +42,4 @@ const Feed = async () => {
   );
 };
 
-export default Feed;
+export default Home;
