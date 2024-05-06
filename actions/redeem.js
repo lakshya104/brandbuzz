@@ -127,115 +127,33 @@ export const getLeaderboard = async () => {
   }
 };
 
-// export const createQuestionWithAnswers = async () => {
-//   try {
-//     // Create the first question with answers
-//     await db.question.create({
-//       data: {
-//         text: "What is the capital of Japan?",
-//         answers: {
-//           createMany: {
-//             data: [
-//               { text: "Beijing", isCorrect: false },
-//               { text: "Seoul", isCorrect: false },
-//               { text: "Tokyo", isCorrect: true },
-//               { text: "Bangkok", isCorrect: false },
-//             ],
-//           },
-//         },
-//       },
-//       include: {
-//         answers: true,
-//       },
-//     });
+export const createQuestionWithAnswers = async (id, question, a, b, c, d) => {
+  try {
+    await db.question.create({
+      data: {
+        text: question,
+        feedItemId: id,
+        answers: {
+          createMany: {
+            data: [
+              { text: a.text, isCorrect: a.isCorrect },
+              { text: b.text, isCorrect: b.isCorrect },
+              { text: c.text, isCorrect: c.isCorrect },
+              { text: d.text, isCorrect: d.isCorrect },
+            ],
+          },
+        },
+      },
+      include: {
+        answers: true,
+      },
+    });
 
-//     // Create the second question with answers
-//     await db.question.create({
-//       data: {
-//         text: "Which gas is most abundant in Earth's atmosphere?",
-//         answers: {
-//           createMany: {
-//             data: [
-//               { text: "Oxygen", isCorrect: false },
-//               { text: "Carbon Dioxide", isCorrect: false },
-//               { text: "Nitrogen", isCorrect: true },
-//               { text: "Methane", isCorrect: false },
-//             ],
-//           },
-//         },
-//       },
-//       include: {
-//         answers: true,
-//       },
-//     });
-
-//     // Create the third question with answers
-//     await db.question.create({
-//       data: {
-//         text: "Who developed the theory of relativity?",
-//         answers: {
-//           createMany: {
-//             data: [
-//               { text: "Isaac Newton", isCorrect: false },
-//               { text: "Albert Einstein", isCorrect: true },
-//               { text: "Stephen Hawking", isCorrect: false },
-//               { text: "Galileo Galilei", isCorrect: false },
-//             ],
-//           },
-//         },
-//       },
-//       include: {
-//         answers: true,
-//       },
-//     });
-
-//     // Create the fourth question with answers
-//     await db.question.create({
-//       data: {
-//         text: "What is the chemical symbol for gold?",
-//         answers: {
-//           createMany: {
-//             data: [
-//               { text: "Au", isCorrect: true },
-//               { text: "Ag", isCorrect: false },
-//               { text: "Fe", isCorrect: false },
-//               { text: "Cu", isCorrect: false },
-//             ],
-//           },
-//         },
-//       },
-//       include: {
-//         answers: true,
-//       },
-//     });
-
-//     // Create the fifth question with answers
-//     await db.question.create({
-//       data: {
-//         text: "Which animal is known as the 'King of the Jungle'?",
-//         answers: {
-//           createMany: {
-//             data: [
-//               { text: "Lion", isCorrect: true },
-//               { text: "Tiger", isCorrect: false },
-//               { text: "Leopard", isCorrect: false },
-//               { text: "Cheetah", isCorrect: false },
-//             ],
-//           },
-//         },
-//       },
-//       include: {
-//         answers: true,
-//       },
-//     });
-
-//     console.log("Questions and answers created successfully.");
-//   } catch (error) {
-//     console.error("Error creating questions:", error);
-//   }
-// };
-
-
+    console.log("Questions and answers created successfully.");
+  } catch (error) {
+    console.error("Error creating questions:", error);
+  }
+};
 
 export const getAllQuestionsWithAnswers = async () => {
   try {
@@ -307,7 +225,7 @@ export const getAllFeedItems = async () => {
     const feedItems = await db.feedItem.findMany();
     return feedItems;
   } catch (error) {
-    console.error('Error fetching feed items:', error);
+    console.error("Error fetching feed items:", error);
     throw error;
   }
 };
@@ -319,13 +237,13 @@ export const fetchFeedItemById = async (itemId) => {
         id: itemId,
       },
       include: {
-        questions: true, 
+        questions: true,
       },
     });
 
     return feedItem;
   } catch (error) {
-    console.error('Error fetching feed item:', error);
+    console.error("Error fetching feed item:", error);
     throw error;
   }
 };
