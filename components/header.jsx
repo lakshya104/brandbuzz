@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { LoginButton } from "@/components/auth/login-button";
 import { auth } from "@/auth";
-import SignOutButton from "@/components/auth/signout-button";
 import ProfileDropdown from "@/components/profile-dropdown";
 
 export const Header = async () => {
@@ -27,14 +26,9 @@ export const Header = async () => {
             </Button>
           </LoginButton>
         ) : (
-          <>
             <div className="block">
               <ProfileDropdown />
             </div>
-            {/* <div className="lg:hidden block">
-              <SignOutButton />
-            </div> */}
-          </>
         )}
       </div>
     </header>

@@ -1,6 +1,4 @@
-import { Footer } from "./footer";
-import { Header } from "./header";
-
+import { Header } from "@/components/header";
 
 const LandingLayout = ({ children }) => {
   return (
@@ -9,7 +7,6 @@ const LandingLayout = ({ children }) => {
       <main className="flex-1 flex flex-col items-center justify-center">
         {children}
       </main>
-      {/* <Footer /> */}
     </div>
   );
 };
