@@ -21,15 +21,21 @@ const Home = async () => {
             <>
               {item.type === "VIDEO" && (
                 <VideoPlayer
+                  key={item.id}
                   title={item.title}
                   videosrc={item.videoUrl}
                   description={item.description}
                   id={item.id}
                 />
               )}
-              {item.type === "IMAGE" && <ImagePost item={item} />}
+              {item.type === "IMAGE" && <ImagePost item={item} key={item.id} />}
               {item.type === "BLOG_POST" && (
-                <BlogPost title={item.title} content={item.content} id={item.id} />
+                <BlogPost
+                  title={item.title}
+                  content={item.content}
+                  id={item.id}
+                  key={item.id}
+                />
               )}
             </>
           ))}

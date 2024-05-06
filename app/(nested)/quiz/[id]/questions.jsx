@@ -99,8 +99,9 @@ const Questions = ({ ques, id, inc, dec }) => {
                   </li>
                 ))}
                 {answeredQuestions.includes(question.id) && (
-                  <p className="text-xs text-red-500 ml-4">
-                    * This question has been answered by you.
+                  <p className="text-sm text-muted-foreground ml-4">
+                    <span className="text-red-600 text-lg">*</span> This
+                    question has been answered by you.
                   </p>
                 )}
               </>
