@@ -24,7 +24,7 @@ const Main = async ({ ques, id }) => {
           <div className="lg:hidden flex flex-col justify-center items-center space-y-5 mb-5">
             <UserCard/>
           </div>
-          <div className="flex items-start flex-col justify-start">
+          <div className="flex items-start flex-col max-w-[720px] justify-start">
             <Questions
               ques={ques}
               inc={pointIncrement}

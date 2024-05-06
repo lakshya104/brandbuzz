@@ -54,7 +54,7 @@ const Questions = ({ ques, id, inc, dec }) => {
     <div className="flex items-start flex-col justify-start">
       {ques.map((question) => (
         <div key={question.id} className="w-full lg:pr-6">
-          <h2 className="font-semibold lg:text-xl text-sky-800 mt-2 lg:mt-3.5 ml-5">
+          <h2 className="font-semibold lg:text-2xl text-sky-800 mt-2 lg:mt-3.5 ml-5">
             {question.text}
           </h2>
           <ul className="mb-5">
@@ -70,7 +70,7 @@ const Questions = ({ ques, id, inc, dec }) => {
                             disabled={
                               answeredQuestions.includes(question.id) || loading
                             }
-                            className="my-1 text-[12px] lg:text-[15px]"
+                            className="my-1 text-xs lg:text-sm  min-w-[300px]"
                           >
                             {answer.text}
                           </Button>
