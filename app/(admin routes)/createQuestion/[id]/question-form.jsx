@@ -1,171 +1,132 @@
 "use client";
+import { useState } from "react";
 import { createQuestionWithAnswers } from "@/actions/redeem";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 export const QuestionForm = ({ id }) => {
+  const [question, setQuestion] = useState("");
+  const [options, setOptions] = useState(["", "", "", ""]);
+  const [correctOption, setCorrectOption] = useState(null);
+  const [error, setError] = useState(null);
   const router = useRouter();
   const { toast } = useToast();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const question = formData.get("text");
-    const option1 = {
-      text: formData.get("option1"),
-      isCorrect: formData.get("correctOption") === "option1",
-    };
-    const option2 = {
-      text: formData.get("option2"),
-      isCorrect: formData.get("correctOption") === "option2",
-    };
-    const option3 = {
-      text: formData.get("option3"),
-      isCorrect: formData.get("correctOption") === "option3",
-    };
-    const option4 = {
-      text: formData.get("option4"),
-      isCorrect: formData.get("correctOption") === "option4",
-    };
-    createQuestionWithAnswers(id, question, option1, option2, option3, option4);
-  };
+    if (question === "") {
+      setError("* Please provide question.");
+      return;
+    }
+    // Ensure all options are provided
+    if (options.some((option) => !option)) {
+      setError("* Please provide all options.");
+      return;
+    }
+    if (correctOption === null) {
+      setError("* Please choose one correct option.");
+      return;
+    }
 
-  const handleClick = () => {
-    router.push("/dashboard");
-    toast({
-      title: "Question Created ",
-      description: "Question was created successfully!",
-    });
+    try {
+      await createQuestionWithAnswers(
+        id,
+        question,
+        ...options.map((option, index) => ({
+          text: option,
+          isCorrect: index === correctOption,
+        }))
+      );
+
+      // Reset form fields
+      setQuestion("");
+      setOptions(["", "", "", ""]);
+      setCorrectOption(null);
+      router.push("/dashboard");
+      toast({
+        title: "Question Created ",
+        description: "Question was created successfully!",
+      });
+
+      console.log("Question created successfully.");
+    } catch (error) {
+      console.error("Error creating question:", error);
+      setError("An error occurred while creating the question.");
+    }
   };
 
   return (
-    <div className="bg-white p-1 lg:p-6">
+    <div className="mx-auto my-4 p-3 lg:w-[580px] w-[370px] lg:border rounded-lg">
+      <h1 className="text-2xl text-center font-bold text-gray-800 mb-6">
+        Create New Question
+      </h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-2 lg:px-8 pt-6 pb-8 mb-4"
+        className="bg-white p-2 lg:px-4 py-4 mb-4 flex flex-col items-center justify-center"
       >
-        <h2 className="text-2xl font-semibold text-gray-700 mb-6">
-          Create New Question
-        </h2>
-        <div className="mb-4">
+        <div className="mb-4  flex flex-col justify-between items-center">
           <label
-            htmlFor="text"
             className="block text-sky-700 text-lg font-bold mb-2"
+            htmlFor="question"
           >
-            Question Text:
+            Question:
           </label>
           <Input
-            type="text"
-            id="text"
-            name="text"
-            required
             className="shadow appearance-none text-muted-foreground font-semibold border rounded w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="question"
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
           />
         </div>
-
-        <fieldset className="mb-4">
-          <legend className="text-sky-700 text-lg font-bold mb-2">
-            Options:
-          </legend>
-          <div className="flex items-center justify-start mb-4">
-            <Input
-              type="radio"
-              id="option1"
-              name="correctOption"
-              value="option1"
-              required
-              className="h-4 w-4 mr-2"
-            />
-            <label
-              htmlFor="option1"
-              className="mr-2 text-muted-foreground font-semibold"
+        <div className="mb-4">
+          {options.map((option, index) => (
+            <div
+              key={index}
+              className="flex flex-col space-y-3 items-center space-x-3 mb-2"
             >
-              Option 1
-            </label>
-            <Input
-              type="text"
-              id="option1Text"
-              name="option1"
-              required
-              className="shadow w-[200px] font-semibold text-muted-foreground appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="flex items-center justify-start mb-4">
-            <Input
-              type="radio"
-              id="option2"
-              name="correctOption"
-              value="option2"
-              required
-              className="h-4 w-4 mr-2"
-            />
-            <label
-              htmlFor="option1"
-              className="mr-2 text-muted-foreground font-semibold"
-            >
-              Option 2
-            </label>
-            <Input
-              type="text"
-              id="option2Text"
-              name="option2"
-              required
-              className="shadow w-[200px] font-semibold text-muted-foreground appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="flex items-center justify-start mb-4">
-            <Input
-              type="radio"
-              id="option3"
-              name="correctOption"
-              value="option3"
-              required
-              className="h-4 w-4 mr-2"
-            />
-            <label
-              htmlFor="option1"
-              className="mr-2 text-muted-foreground font-semibold"
-            >
-              Option 3
-            </label>
-            <Input
-              type="text"
-              id="option3Text"
-              name="option3"
-              required
-              className="shadow w-[200px] font-semibold text-muted-foreground appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="flex items-center justify-start mb-4">
-            <Input
-              type="radio"
-              id="option4"
-              name="correctOption"
-              value="option4"
-              required
-              className="h-4 w-4 mr-2"
-            />
-            <label
-              htmlFor="option1"
-              className="mr-2 text-muted-foreground font-semibold"
-            >
-              Option 4
-            </label>
-            <Input
-              type="text"
-              id="option4Text"
-              name="option4"
-              required
-              className="shadow w-[200px] font-semibold text-muted-foreground appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-        </fieldset>
-
-        <Button onClick={handleClick} type="submit">
+              <label
+                className="mr-2 text-muted-foreground font-semibold"
+                htmlFor={`option-${index}`}
+              >
+                {`Option ${index + 1}:`}
+              </label>
+              <div className="flex justify-center space-x-3 items-center">
+                <Input
+                  className="shadow w-[200px] font-semibold text-muted-foreground appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id={`option-${index}`}
+                  type="text"
+                  value={option}
+                  onChange={(e) =>
+                    setOptions((prevOptions) => [
+                      ...prevOptions.slice(0, index),
+                      e.target.value,
+                      ...prevOptions.slice(index + 1),
+                    ])
+                  }
+                />
+                <Input
+                  className="h-4 w-4 mr-2"
+                  id={`radio-${index}`}
+                  type="radio"
+                  name="correctOption"
+                  checked={correctOption === index}
+                  onChange={() => setCorrectOption(index)}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <Button
+          variant="superOutline"
+          className="w-[250px] border border-indigo-700"
+          type="submit"
+        >
           Create Question
         </Button>
+        {error && <div className="text-red-500 mt-3 text-sm">{error}</div>}
       </form>
     </div>
   );
